@@ -2054,3 +2054,43 @@ textarea.form-control {
   color: var(--asphalt);
   border-color: var(--floodlight);
 }
+
+/* === Mobile-First iPhone & Touch Polish === */
+@media (max-width: 900px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+  .scoreboard-strip {
+    display: none;
+  }
+  .concept-banner {
+    padding: 0.35rem 0;
+  }
+  .concept-banner__link {
+    display: none;
+  }
+  .neck-label-header {
+    padding: 0.48rem 0;
+  }
+  .nav-toggle,
+  .filter-pill,
+  .locker-reset-btn,
+  .toggle-btn,
+  [data-select-enquiry],
+  .btn--sm,
+  .btn--ghost-dark {
+    min-height: 40px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .filter-pill {
+    padding: 0.42rem 0.78rem;
+  }
+  .toggle-btn {
+    padding: 0.48rem 0.65rem;
+    font-size: 0.78rem;
+  }
+}
