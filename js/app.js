@@ -1,107 +1,134 @@
 /* ==========================================================================
    ULTRA FOOTBALL SHIRTS — CLIENT-SIDE INTERACTIVE DEMO
-   - Live Stock Filter (Era, Size, Availability)
-   - Accessible Click & Collect Reserve Modal (2 Danby Wynd, Yarm)
-   - 10-Second Owner Stock Admin Demo (sessionStorage sync across pages)
-   - Zero external network requests · XSS-safe DOM rendering
+   - Embedded Instant Locker Filter Console (Era: All/1980s/1990s/2000s/Modern, Size: All/S/M/L/XL)
+   - Die-Cut Garment Swing-Tag Card Renderer with Brass Eyelet, Condition Meter & Perforated Stub
+   - Accessible Click & Collect Reserve Modal (2 Danby Wynd, Yarm TS15 9SF)
+   - Fanzine Two-Ticket Selector (sell-find.html)
+   - 10-Second Handheld Rail Pad Admin Demo (sessionStorage + localStorage sync)
+   - Zero external network requests · XSS-safe DOM escaping
    ========================================================================== */
 
 (function () {
   'use strict';
 
-  var STORAGE_KEY = 'ultra_football_shirts_demo_stock_v1';
-  var MODIFIED_KEY = 'ultra_football_shirts_demo_modified_v1';
+  var STORAGE_KEY = 'ultra_football_shirts_demo_stock_v2';
+  var MODIFIED_KEY = 'ultra_football_shirts_demo_modified_v2';
   var EXACT_DEMO_MSG = 'Demo only – in the live site this would go straight to Ultra Football Shirts.';
   var SAMPLE_TAG = '[Illustrative sample listing – owner stock to supply]';
   var PRICE_TAG = '[£Price – owner to confirm]';
+  var P2P_TAG = '[P2P cm – owner]';
 
   var DEFAULT_STOCK = [
     {
-      id: 'ufs-01',
+      id: 'UFS-01',
       title: '1995–96 Teesside Crimson Chest-Band Home Style',
-      era: '1980s–90s',
+      era: '1990s',
+      decadeBadge: '90s CULT',
       size: 'L',
-      condition: '9/10 Excellent',
+      condition: '9/10 Mint',
+      score: 9,
       kit: 'crimson-band',
       status: 'Available',
-      notes: 'Classic woven fold-over collar, crisp white chest band, heavy 90s polyester weave.',
+      notes: 'Classic woven fold-over collar, crisp white chest band, heavy 90s jacquard weave.',
+      p2p: '',
       demoPriceHint: ''
     },
     {
-      id: 'ufs-02',
+      id: 'UFS-02',
+      title: '1988–90 Turf Emerald & Gold Pinstripe Third Style',
+      era: '1980s',
+      decadeBadge: '80s CLASSIC',
+      size: 'M',
+      condition: '8/10 Very Good',
+      score: 8,
+      kit: 'turf-pinstripes',
+      status: 'Reserved',
+      notes: 'Late-80s twin pinstripe cut; held on demo Click & Collect for Danby Wynd inspection.',
+      p2p: '',
+      demoPriceHint: ''
+    },
+    {
+      id: 'UFS-03',
       title: '1993–95 Claret & Sky Jacquard Stripe Home Style',
-      era: '1980s–90s',
+      era: '1990s',
+      decadeBadge: '90s CULT',
       size: 'M',
       condition: '9.5/10 Mint',
+      score: 10,
       kit: 'claret-sky-stripes',
       status: 'Available',
       notes: 'Traditional vertical stripes with ribbed V-neck trim and clean stitched cuffs.',
+      p2p: '',
       demoPriceHint: ''
     },
     {
-      id: 'ufs-03',
-      title: '1991–93 Matchday Amber & Charcoal Chevron Away Style',
-      era: '1980s–90s',
+      id: 'UFS-04',
+      title: '1986–88 Matchday Amber & Charcoal Chevron Away Style',
+      era: '1980s',
+      decadeBadge: '80s CLASSIC',
       size: 'XL',
       condition: '8/10 Very Good',
+      score: 8,
       kit: 'amber-chevrons',
       status: 'Available',
-      notes: 'Bold terrace away geometry, vibrant colourway, minor age-consistent micro-bobble.',
+      notes: 'Bold terrace away geometry, vibrant colourway, honest age-consistent patina.',
+      p2p: '',
       demoPriceHint: ''
     },
     {
-      id: 'ufs-04',
+      id: 'UFS-05',
       title: '2002–04 Albiceleste Sky & White Stripe Home Style',
       era: '2000s',
+      decadeBadge: '00s ICON',
       size: 'L',
-      condition: '9/10 Excellent',
+      condition: '9/10 Mint',
+      score: 9,
       kit: 'sky-white-stripes',
       status: 'Available',
       notes: 'Early-2000s dual-layer mesh panelling with contrast midnight collar and cuffs.',
+      p2p: '',
       demoPriceHint: ''
     },
     {
-      id: 'ufs-05',
+      id: 'UFS-06',
       title: '2005–06 Viola & Chalk Halves European Cup Style',
       era: '2000s',
+      decadeBadge: '00s ICON',
       size: 'S',
-      condition: 'BNWT',
+      condition: '10/10 BNWT',
+      score: 10,
       kit: 'viola-halves',
       status: 'Available',
-      notes: 'Unworn deadstock collector piece retaining original swing tags and gold piping.',
+      notes: 'Unworn deadstock collector piece retaining original manufacturer tags and piping.',
+      p2p: '',
       demoPriceHint: ''
     },
     {
-      id: 'ufs-06',
-      title: '1988–90 Turf Emerald & Gold Pinstripe Third Style',
-      era: '1980s–90s',
-      size: 'M',
-      condition: '8/10 Very Good',
-      kit: 'turf-pinstripes',
-      status: 'Reserved',
-      notes: 'Late-80s twin pinstripe cut; currently held on demo Click & Collect for Danby Wynd inspection.',
-      demoPriceHint: ''
-    },
-    {
-      id: 'ufs-07',
-      title: '2008–09 Midnight & Turf Diagonal Sash Away Style',
-      era: '2000s',
+      id: 'UFS-07',
+      title: '1997–98 Midnight & Turf Diagonal Sash Away Style',
+      era: '1990s',
+      decadeBadge: '90s CULT',
       size: 'XL',
-      condition: '9/10 Excellent',
+      condition: '9/10 Mint',
+      score: 9,
       kit: 'midnight-sash',
       status: 'Available',
       notes: 'Sharp diagonal sash across deep floodlight navy body with tailored collar.',
+      p2p: '',
       demoPriceHint: ''
     },
     {
-      id: 'ufs-08',
+      id: 'UFS-08',
       title: '2017–18 Floodlight Navy & Copper Quarters Collector Cut',
-      era: 'Modern Classics',
+      era: 'Modern',
+      decadeBadge: 'MODERN CUT',
       size: 'S',
       condition: '9.5/10 Mint',
+      score: 10,
       kit: 'navy-copper-quarters',
       status: 'Available',
       notes: 'Limited-run modern classic quartered shirt with tonal woven hem label.',
+      p2p: '',
       demoPriceHint: ''
     }
   ];
@@ -121,9 +148,25 @@
     return JSON.parse(JSON.stringify(DEFAULT_STOCK));
   }
 
+  function decadeBadgeForEra(era) {
+    if (era === '1980s') return '80s CLASSIC';
+    if (era === '1990s') return '90s CULT';
+    if (era === '2000s') return '00s ICON';
+    return 'MODERN CUT';
+  }
+
+  function scoreForCondition(condStr) {
+    var s = String(condStr || '');
+    if (s.indexOf('10') !== -1 || s.indexOf('BNWT') !== -1 || s.indexOf('9.5') !== -1) return 10;
+    if (s.indexOf('9') !== -1) return 9;
+    if (s.indexOf('8') !== -1) return 8;
+    if (s.indexOf('7') !== -1) return 7;
+    return 9;
+  }
+
   function loadStock() {
     try {
-      var raw = window.sessionStorage.getItem(STORAGE_KEY);
+      var raw = window.sessionStorage.getItem(STORAGE_KEY) || window.localStorage.getItem(STORAGE_KEY);
       if (raw) {
         var parsed = JSON.parse(raw);
         if (Array.isArray(parsed) && parsed.length > 0) {
@@ -142,12 +185,12 @@
     memoryFallbackStock = items;
     try {
       window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-      if (markModified) {
-        window.sessionStorage.setItem(MODIFIED_KEY, '1');
-      }
-    } catch (err) {
-      /* sessionStorage unavailable; memoryFallbackStock handles current view */
-    }
+      if (markModified) window.sessionStorage.setItem(MODIFIED_KEY, '1');
+    } catch (_) {}
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+      if (markModified) window.localStorage.setItem(MODIFIED_KEY, '1');
+    } catch (_) {}
   }
 
   function resetStockStorage() {
@@ -155,23 +198,27 @@
     try {
       window.sessionStorage.removeItem(STORAGE_KEY);
       window.sessionStorage.removeItem(MODIFIED_KEY);
-    } catch (err) {
-      /* ignore */
-    }
+    } catch (_) {}
+    try {
+      window.localStorage.removeItem(STORAGE_KEY);
+      window.localStorage.removeItem(MODIFIED_KEY);
+    } catch (_) {}
     return cloneDefaults();
   }
 
   function isSessionModified() {
     try {
-      return window.sessionStorage.getItem(MODIFIED_KEY) === '1';
-    } catch (err) {
+      return (
+        window.sessionStorage.getItem(MODIFIED_KEY) === '1' ||
+        window.localStorage.getItem(MODIFIED_KEY) === '1'
+      );
+    } catch (_) {
       return false;
     }
   }
 
   /* ------------------------------------------------------------------------
      Bespoke Non-Branded Geometric SVG Football Kit Renderer
-     Zero trademarked club crests or sportswear brand marks.
      ------------------------------------------------------------------------ */
   var svgUidCounter = 0;
 
@@ -183,12 +230,12 @@
     var palettes = {
       'crimson-band': {
         base: '#B81D24',
-        collar: '#F4F6F8',
-        cuff: '#F4F6F8',
+        collar: '#F6F4EE',
+        cuff: '#F6F4EE',
         pattern:
-          '<rect x="18" y="46" width="84" height="18" fill="#F4F6F8"/>' +
-          '<rect x="18" y="43" width="84" height="2.5" fill="#0E151C" opacity="0.35"/>' +
-          '<rect x="18" y="64.5" width="84" height="2.5" fill="#0E151C" opacity="0.35"/>'
+          '<rect x="18" y="46" width="84" height="18" fill="#F6F4EE"/>' +
+          '<rect x="18" y="43" width="84" height="2.5" fill="#0D1115" opacity="0.35"/>' +
+          '<rect x="18" y="64.5" width="84" height="2.5" fill="#0D1115" opacity="0.35"/>'
       },
       'claret-sky-stripes': {
         base: '#6E1E36',
@@ -196,22 +243,22 @@
         cuff: '#7BC4E8',
         pattern:
           '<rect x="10" y="18" width="16" height="92" fill="#7BC4E8"/>' +
-          '<rect x="40" y="18" width="12" height="92" fill="#F4F6F8"/>' +
-          '<rect x="68" y="18" width="12" height="92" fill="#F4F6F8"/>' +
+          '<rect x="40" y="18" width="12" height="92" fill="#F6F4EE"/>' +
+          '<rect x="68" y="18" width="12" height="92" fill="#F6F4EE"/>' +
           '<rect x="94" y="18" width="16" height="92" fill="#7BC4E8"/>'
       },
       'amber-chevrons': {
-        base: '#F2C12E',
-        collar: '#141D26',
-        cuff: '#141D26',
+        base: '#F5C518',
+        collar: '#0D1115',
+        cuff: '#0D1115',
         pattern:
-          '<polygon points="18,40 60,62 102,40 102,52 60,74 18,52" fill="#141D26"/>' +
-          '<polygon points="18,64 60,86 102,64 102,75 60,97 18,75" fill="#141D26"/>'
+          '<polygon points="18,40 60,62 102,40 102,52 60,74 18,52" fill="#0D1115"/>' +
+          '<polygon points="18,64 60,86 102,64 102,75 60,97 18,75" fill="#0D1115"/>'
       },
       'sky-white-stripes': {
-        base: '#F4F6F8',
-        collar: '#0E151C',
-        cuff: '#0E151C',
+        base: '#F6F4EE',
+        collar: '#0D1115',
+        cuff: '#0D1115',
         pattern:
           '<rect x="28" y="18" width="13" height="92" fill="#6BB6E6"/>' +
           '<rect x="53.5" y="18" width="13" height="92" fill="#6BB6E6"/>' +
@@ -219,29 +266,29 @@
       },
       'viola-halves': {
         base: '#4C2A85',
-        collar: '#F2C12E',
-        cuff: '#F2C12E',
+        collar: '#F5C518',
+        cuff: '#F5C518',
         pattern:
-          '<rect x="60" y="18" width="52" height="92" fill="#F4F6F8"/>' +
-          '<rect x="58.5" y="18" width="3" height="92" fill="#F2C12E"/>'
+          '<rect x="60" y="18" width="52" height="92" fill="#F6F4EE"/>' +
+          '<rect x="58.5" y="18" width="3" height="92" fill="#F5C518"/>'
       },
       'turf-pinstripes': {
-        base: '#0B7A53',
-        collar: '#F2C12E',
-        cuff: '#F2C12E',
+        base: '#08693A',
+        collar: '#F5C518',
+        cuff: '#F5C518',
         pattern:
-          '<rect x="34" y="18" width="2.5" height="92" fill="#F2C12E"/>' +
-          '<rect x="48" y="18" width="2.5" height="92" fill="#F4F6F8"/>' +
-          '<rect x="69.5" y="18" width="2.5" height="92" fill="#F4F6F8"/>' +
-          '<rect x="83.5" y="18" width="2.5" height="92" fill="#F2C12E"/>'
+          '<rect x="34" y="18" width="2.5" height="92" fill="#F5C518"/>' +
+          '<rect x="48" y="18" width="2.5" height="92" fill="#F6F4EE"/>' +
+          '<rect x="69.5" y="18" width="2.5" height="92" fill="#F6F4EE"/>' +
+          '<rect x="83.5" y="18" width="2.5" height="92" fill="#F5C518"/>'
       },
       'midnight-sash': {
         base: '#162435',
-        collar: '#0B7A53',
-        cuff: '#0B7A53',
+        collar: '#08693A',
+        cuff: '#08693A',
         pattern:
-          '<polygon points="24,22 42,22 96,106 78,106" fill="#0B7A53"/>' +
-          '<polygon points="42,22 46,22 100,106 96,106" fill="#F2C12E"/>'
+          '<polygon points="24,22 42,22 96,106 78,106" fill="#08693A"/>' +
+          '<polygon points="42,22 46,22 100,106 96,106" fill="#F5C518"/>'
       },
       'navy-copper-quarters': {
         base: '#142130',
@@ -250,7 +297,7 @@
         pattern:
           '<rect x="60" y="18" width="52" height="44" fill="#C96A34"/>' +
           '<rect x="10" y="62" width="50" height="48" fill="#C96A34"/>' +
-          '<rect x="18" y="61" width="84" height="2" fill="#F4F6F8" opacity="0.5"/>'
+          '<rect x="18" y="61" width="84" height="2" fill="#F6F4EE" opacity="0.5"/>'
       }
     };
 
@@ -264,27 +311,29 @@
             '<path d="' + shirtPath + '"/>' +
           '</clipPath>' +
         '</defs>' +
-        /* Coat hanger hook & bar */
         '<path d="M60 6 C65 6 67 10 64 13 C62 15 60 15.5 60 18" fill="none" stroke="#94A3B8" stroke-width="2.2" stroke-linecap="round"/>' +
         '<path d="M41 22 L60 17 L79 22" fill="none" stroke="#CBD5E1" stroke-width="2.5" stroke-linecap="round"/>' +
-        /* Shirt body + clipped pattern */
         '<g clip-path="url(#' + clipId + ')">' +
           '<rect x="10" y="18" width="100" height="92" fill="' + p.base + '"/>' +
           p.pattern +
-          /* Subtle vertical fabric sheen */
           '<rect x="10" y="18" width="100" height="92" fill="rgba(255,255,255,0.03)"/>' +
         '</g>' +
-        /* Crisp shirt outline */
-        '<path d="' + shirtPath + '" fill="none" stroke="#F4F6F8" stroke-width="1.6" stroke-linejoin="round"/>' +
-        /* Classic V-neck collar */
-        '<path d="M40 21.5 L60 37 L80 21.5 L73 20.5 L60 30.5 L47 20.5 Z" fill="' + p.collar + '" stroke="#0E151C" stroke-width="1.2"/>' +
-        /* Woven inner size tag */
-        '<rect x="56" y="23" width="8" height="4" fill="#0E151C"/>' +
-        /* Sleeve cuff ribs */
+        '<path d="' + shirtPath + '" fill="none" stroke="#F6F4EE" stroke-width="1.6" stroke-linejoin="round"/>' +
+        '<path d="M40 21.5 L60 37 L80 21.5 L73 20.5 L60 30.5 L47 20.5 Z" fill="' + p.collar + '" stroke="#0D1115" stroke-width="1.2"/>' +
+        '<rect x="56" y="23" width="8" height="4" fill="#0D1115"/>' +
         '<path d="M15.5 36.5 L24.5 53.5" stroke="' + p.cuff + '" stroke-width="4" stroke-linecap="butt"/>' +
         '<path d="M104.5 36.5 L95.5 53.5" stroke="' + p.cuff + '" stroke-width="4" stroke-linecap="butt"/>' +
       '</svg>'
     );
+  }
+
+  function renderConditionSegments(score) {
+    var filled = Math.max(1, Math.min(10, Number(score) || 9));
+    var out = '';
+    for (var s = 1; s <= 10; s++) {
+      out += '<span class="cond-seg' + (s <= filled ? ' cond-seg--on' : '') + '"></span>';
+    }
+    return out;
   }
 
   /* ------------------------------------------------------------------------
@@ -312,8 +361,7 @@
     }
 
     toggleBtn.addEventListener('click', function () {
-      var expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-      if (expanded) {
+      if (toggleBtn.getAttribute('aria-expanded') === 'true') {
         closeNav(false);
       } else {
         openNav();
@@ -342,7 +390,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     2. Interactive Stock Room + Click & Collect Modal (index.html)
+     2. Interactive Die-Cut Swing-Tag Stock Room (index.html)
      ------------------------------------------------------------------------ */
   function initStockRoom() {
     var gridEl = document.getElementById('stock-grid');
@@ -351,6 +399,7 @@
     var countEl = document.getElementById('stock-results-count');
     var syncNoticeEl = document.getElementById('session-sync-badge');
     var resetFiltersBtn = document.getElementById('reset-filters-btn');
+    var sizeNavPip = document.querySelector('[data-active-size-pip]');
 
     var filters = {
       era: 'All',
@@ -360,9 +409,16 @@
 
     function getPriceLine(item) {
       if (item.demoPriceHint && String(item.demoPriceHint).trim() !== '') {
-        return PRICE_TAG + ' (Demo guide: ' + escapeHtml(item.demoPriceHint) + ')';
+        return PRICE_TAG + ' (' + escapeHtml(item.demoPriceHint) + ')';
       }
       return PRICE_TAG;
+    }
+
+    function getP2PLine(item) {
+      if (item.p2p && String(item.p2p).trim() !== '') {
+        return escapeHtml(item.p2p);
+      }
+      return P2P_TAG;
     }
 
     function getStatusBadgeClass(status) {
@@ -386,12 +442,14 @@
       var stock = loadStock();
       updateAvailabilityCounts(stock);
 
+      if (sizeNavPip) {
+        sizeNavPip.textContent = 'SIZE [' + (filters.size === 'All' ? 'ALL' : filters.size) + ']';
+      }
+
       if (syncNoticeEl) {
-        if (isSessionModified()) {
-          syncNoticeEl.textContent = 'Live session update active from Owner Admin Demo →';
-        } else {
-          syncNoticeEl.textContent = 'Try 1-tap stock toggles in Owner Admin Demo →';
-        }
+        syncNoticeEl.textContent = isSessionModified()
+          ? 'Live rail sync active from Owner Scanner Demo \u2192'
+          : 'Test 1-tap rail toggles in Owner Scanner Demo \u2192';
       }
 
       var filtered = [];
@@ -407,16 +465,15 @@
 
       if (countEl) {
         countEl.textContent =
-          'Showing ' + filtered.length + ' of ' + stock.length +
-          ' illustrative 1-of-1 sample listings';
+          'Showing ' + filtered.length + ' of ' + stock.length + ' swing-tags';
       }
 
       if (filtered.length === 0) {
         gridEl.innerHTML =
           '<div class="empty-state" style="grid-column: 1 / -1;">' +
-            '<h3>No sample shirts match that exact filter combination</h3>' +
-            '<p>Try resetting the Era or Size filter, or send a Grail / Shirt Finder request for 2 Danby Wynd.</p>' +
-            '<button type="button" class="btn btn--amber" data-inline-reset-filters>Show All Sample Shirts</button>' +
+            '<h3>No sample swing-tags match that Era + Size filter</h3>' +
+            '<p>Reset the locker filter above, or lodge a Shirt Finder ticket for 2 Danby Wynd.</p>' +
+            '<button type="button" class="btn btn--floodlight" data-inline-reset-filters>Show All Swing-Tags</button>' +
           '</div>';
         var inlineReset = gridEl.querySelector('[data-inline-reset-filters]');
         if (inlineReset) {
@@ -429,55 +486,86 @@
       for (var j = 0; j < filtered.length; j++) {
         var item = filtered[j];
         var isAvailable = item.status === 'Available';
-        var cardClass = item.status === 'Sold' ? 'shirt-card shirt-card--sold' : 'shirt-card';
+        var tagClass = item.status === 'Sold' ? 'swing-tag swing-tag--sold' : 'swing-tag';
+        var badgeLabel = item.decadeBadge || decadeBadgeForEra(item.era);
+        var scoreNum = item.score || scoreForCondition(item.condition);
+        var serialCode = String(item.id || ('UFS-0' + (j + 1))).toUpperCase();
         var shirtSummary = item.title + ' — Size ' + item.size + ' (' + item.era + ')';
 
         var ctaHtml = '';
         if (isAvailable) {
           ctaHtml =
-            '<button type="button" class="btn btn--primary shirt-card__btn" ' +
+            '<button type="button" class="btn btn--emerald swing-tag__btn" ' +
               'data-reserve-trigger ' +
               'data-shirt-summary="' + escapeHtml(shirtSummary) + '">' +
-              'Reserve / Enquire (Click &amp; Collect)' +
+              'Click &amp; Collect \u00B7 2 Danby Wynd' +
             '</button>';
         } else if (item.status === 'Reserved') {
           ctaHtml =
-            '<button type="button" class="btn shirt-card__btn shirt-card__btn--disabled" disabled aria-disabled="true">' +
-              'Reserved — Danby Wynd Hold' +
+            '<button type="button" class="btn swing-tag__btn swing-tag__btn--disabled" disabled aria-disabled="true">' +
+              'Held at Counter \u00B7 2 Danby Wynd' +
             '</button>';
         } else {
           ctaHtml =
-            '<button type="button" class="btn shirt-card__btn shirt-card__btn--disabled" disabled aria-disabled="true">' +
-              'Sold — 1-of-1 Piece Gone' +
+            '<button type="button" class="btn swing-tag__btn swing-tag__btn--disabled" disabled aria-disabled="true">' +
+              'Sold \u00B7 1-of-1 Gone' +
             '</button>';
         }
 
         html +=
-          '<article class="' + cardClass + '">' +
-            '<div class="shirt-card__stage">' +
-              '<div class="shirt-card__top-badges">' +
-                '<span class="' + getStatusBadgeClass(item.status) + '">' + escapeHtml(item.status) + '</span>' +
-                '<span class="rail-tag">1-of-1 stock</span>' +
+          '<article class="swing-tag-wrap">' +
+            '<div class="swing-tag-shell">' +
+              '<div class="' + tagClass + '">' +
+                /* Top chamfered crown + punched brass eyelet hole */
+                '<div class="swing-tag__crown">' +
+                  '<span class="decade-badge">' + escapeHtml(badgeLabel) + '</span>' +
+                  '<span class="swing-tag__eyelet" aria-hidden="true"></span>' +
+                  '<span class="' + getStatusBadgeClass(item.status) + '">' + escapeHtml(item.status) + '</span>' +
+                '</div>' +
+
+                /* Floodlight Kit SVG Stage */
+                '<div class="swing-tag__stage">' +
+                  '<div class="swing-tag__svg-wrap">' +
+                    renderKitSvg(item.kit, 'Illustrative geometric shirt graphic: ' + item.title) +
+                  '</div>' +
+                  '<div class="sample-badge">' + escapeHtml(SAMPLE_TAG) + '</div>' +
+                '</div>' +
+
+                /* Garment Swing-Tag Spec Body */
+                '<div class="swing-tag__body">' +
+                  '<h3 class="swing-tag__title">' + escapeHtml(item.title) + '</h3>' +
+                  '<p class="swing-tag__notes">' + escapeHtml(item.notes || '1-of-1 collector rail sample listing.') + '</p>' +
+
+                  '<div class="swing-tag__measurements" aria-label="Garment size and pit-to-pit measurement">' +
+                    '<span class="size-stamp">SIZE ' + escapeHtml(item.size) + '</span>' +
+                    '<span class="p2p-stamp">' + getP2PLine(item) + '</span>' +
+                  '</div>' +
+
+                  '<div class="cond-meter" aria-label="Condition grade ' + escapeHtml(item.condition) + '">' +
+                    '<div class="cond-meter__row">' +
+                      '<span>CONDITION</span>' +
+                      '<strong>[Grade \u2013 ' + escapeHtml(item.condition) + ']</strong>' +
+                    '</div>' +
+                    '<div class="cond-meter__segments" aria-hidden="true">' +
+                      renderConditionSegments(scoreNum) +
+                    '</div>' +
+                  '</div>' +
+
+                  '<div class="swing-tag__price-row">' +
+                    '<span class="swing-tag__price-k">Rail Price</span>' +
+                    '<span class="swing-tag__price-v">' + getPriceLine(item) + '</span>' +
+                  '</div>' +
+                '</div>' +
+
+                /* Dashed Perforated Tear-Off Stub */
+                '<div class="swing-tag__stub">' +
+                  '<div class="swing-tag__serial">' +
+                    '<span>SERIAL // ' + escapeHtml(serialCode) + '</span>' +
+                    '<strong>1 OF 1</strong>' +
+                  '</div>' +
+                  ctaHtml +
+                '</div>' +
               '</div>' +
-              '<div class="shirt-card__svg-wrap">' +
-                renderKitSvg(item.kit, 'Illustrative geometric shirt graphic: ' + item.title) +
-              '</div>' +
-              '<div class="sample-badge">' + escapeHtml(SAMPLE_TAG) + '</div>' +
-            '</div>' +
-            '<div class="shirt-card__body">' +
-              '<div class="shirt-card__era">' + escapeHtml(item.era) + '</div>' +
-              '<h3 class="shirt-card__title">' + escapeHtml(item.title) + '</h3>' +
-              '<p class="shirt-card__notes">' + escapeHtml(item.notes || '1-of-1 collector rail sample listing.') + '</p>' +
-              '<div class="woven-specs" aria-label="Shirt specifications">' +
-                '<span class="woven-spec woven-spec--size">SIZE ' + escapeHtml(item.size) + '</span>' +
-                '<span class="woven-spec">' + escapeHtml(item.condition) + '</span>' +
-                '<span class="woven-spec">1-of-1 stock</span>' +
-              '</div>' +
-              '<div class="shirt-card__price-row">' +
-                '<span class="shirt-card__price-label">Guide Price</span>' +
-                '<span class="shirt-card__price">' + getPriceLine(item) + '</span>' +
-              '</div>' +
-              ctaHtml +
             '</div>' +
           '</article>';
       }
@@ -563,7 +651,6 @@
       }
     }
 
-    /* Delegated click handler for dynamic shirt cards & hero CTA */
     document.addEventListener('click', function (e) {
       var trigger = e.target.closest('[data-reserve-trigger]');
       if (trigger) {
@@ -620,23 +707,45 @@
   }
 
   /* ------------------------------------------------------------------------
-     4. Sell / Trade & Grail Finder Dummy Form (sell-find.html)
+     4. Sell / Trade & Grail Finder Two-Ticket Forms (sell-find.html)
      ------------------------------------------------------------------------ */
-  function initFinderForm() {
+  function initFinderForms() {
+    /* Support any client-side dummy forms on sell-find.html */
+    var enquirySelect = document.getElementById('enquiry-type');
+    var ticketButtons = document.querySelectorAll('[data-select-enquiry]');
+    for (var t = 0; t < ticketButtons.length; t++) {
+      ticketButtons[t].addEventListener('click', function () {
+        var mode = this.getAttribute('data-select-enquiry');
+        if (enquirySelect && mode) {
+          enquirySelect.value = mode;
+        }
+        var targetForm = document.getElementById('shirt-finder-section');
+        if (targetForm) {
+          targetForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        var nameField = document.getElementById('enquiry-name');
+        if (nameField) {
+          setTimeout(function () {
+            nameField.focus();
+          }, 220);
+        }
+      });
+    }
+
     var form = document.getElementById('shirt-finder-form');
     var feedback = document.getElementById('finder-feedback');
-    if (!form || !feedback) return;
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      feedback.textContent = EXACT_DEMO_MSG;
-      feedback.hidden = false;
-      feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
+    if (form && feedback) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        feedback.textContent = EXACT_DEMO_MSG;
+        feedback.hidden = false;
+        feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
   }
 
   /* ------------------------------------------------------------------------
-     5. Simple 10-Second Owner Stock Admin Demo (admin.html)
+     5. 10-Second Handheld Stock-Room Inventory Pad (admin.html)
      ------------------------------------------------------------------------ */
   function initAdminDemo() {
     var listEl = document.getElementById('admin-stock-list');
@@ -692,7 +801,7 @@
               'aria-pressed="' + pressed + '" ' +
               'data-admin-toggle-id="' + escapeHtml(item.id) + '" ' +
               'data-admin-toggle-status="' + st + '">' +
-              st +
+              st.toUpperCase() +
             '</button>';
         }
 
@@ -705,15 +814,15 @@
               '<div class="admin-item__info">' +
                 '<p class="admin-item__title">' + escapeHtml(item.title) + '</p>' +
                 '<div class="admin-item__meta">' +
-                  'SIZE ' + escapeHtml(item.size) + ' · ' +
-                  escapeHtml(item.era) + ' · ' +
-                  escapeHtml(item.condition) + ' · ' +
+                  escapeHtml(item.id) + ' \u00B7 SIZE ' + escapeHtml(item.size) + ' \u00B7 ' +
+                  escapeHtml(item.era) + ' \u00B7 ' +
+                  escapeHtml(item.condition) + ' \u00B7 ' +
                   escapeHtml(SAMPLE_TAG) +
                 '</div>' +
               '</div>' +
             '</div>' +
             '<div class="admin-item__controls">' +
-              '<span class="admin-item__meta">1-Tap Rail Status:</span>' +
+              '<span class="admin-item__meta">TAP RAIL STATUS:</span>' +
               '<div class="toggle-group" role="group" aria-label="Status for ' + escapeHtml(item.title) + '">' +
                 togglesHtml +
               '</div>' +
@@ -743,8 +852,8 @@
       saveStock(stock, true);
       renderAdminList();
       showToast(
-        'Updated "' + targetTitle + '" to ' + newStatus.toUpperCase() +
-        ' in this browser tab. Open Stock Room to see it live!'
+        'RAIL PAD SYNC // "' + targetTitle + '" marked ' + newStatus.toUpperCase() +
+        '. Switch to Stock Room to inspect the updated swing-tag!'
       );
     });
 
@@ -761,20 +870,28 @@
         var titleVal = titleEl && titleEl.value.trim()
           ? titleEl.value.trim()
           : '1996–97 Classic Striped Rail Sample';
+        var chosenEra = eraEl ? eraEl.value : '1990s';
+        var chosenCond = condEl ? condEl.value : '9/10 Mint';
+
+        var stock = loadStock();
+        var nextNum = stock.length + 1;
+        var serialId = 'UFS-' + (nextNum < 10 ? '0' + nextNum : String(nextNum));
 
         var newItem = {
-          id: 'ufs-custom-' + Date.now(),
+          id: serialId,
           title: titleVal,
-          era: eraEl ? eraEl.value : '1980s–90s',
+          era: chosenEra,
+          decadeBadge: decadeBadgeForEra(chosenEra),
           size: sizeEl ? sizeEl.value : 'L',
-          condition: condEl ? condEl.value : '9/10 Excellent',
+          condition: chosenCond,
+          score: scoreForCondition(chosenCond),
           kit: kitEl ? kitEl.value : 'crimson-band',
           status: 'Available',
-          notes: 'Added via 10-Second Owner Admin Demo (local browser session preview).',
+          notes: 'Added via 10-Second Handheld Rail Pad Demo (local browser session preview).',
+          p2p: '',
           demoPriceHint: priceEl && priceEl.value.trim() ? priceEl.value.trim() : ''
         };
 
-        var stock = loadStock();
         stock.unshift(newItem);
         saveStock(stock, true);
         renderAdminList();
@@ -785,9 +902,9 @@
         if (addFeedback) {
           addFeedback.innerHTML =
             '<p style="margin:0 0 0.45rem;">' + escapeHtml(EXACT_DEMO_MSG) + '</p>' +
-            '<p style="margin:0; font-weight:400; font-size:0.875rem;">' +
-              'Preview added to this browser tab\'s sessionStorage — ' +
-              '<a href="index.html#stock-room">view "' + escapeHtml(titleVal) + '" at the top of the Stock Room →</a>' +
+            '<p style="margin:0; font-weight:400; font-size:0.86rem;">' +
+              'Swing-tag ' + escapeHtml(serialId) + ' added to local preview \u2014 ' +
+              '<a href="index.html#stock-room">inspect "' + escapeHtml(titleVal) + '" on the live Stock Room rail \u2192</a>' +
             '</p>';
           addFeedback.hidden = false;
         }
@@ -799,19 +916,18 @@
         resetStockStorage();
         renderAdminList();
         if (addFeedback) addFeedback.hidden = true;
-        showToast('Demo stock reset to the 8 default sample listings.');
+        showToast('Rail Pad reset to the 8 default 2 Danby Wynd sample swing-tags.');
       });
     }
 
     renderAdminList();
   }
 
-  /* Initialize on DOM ready */
   document.addEventListener('DOMContentLoaded', function () {
     initMobileNav();
     initStockRoom();
     initReserveModal();
-    initFinderForm();
+    initFinderForms();
     initAdminDemo();
   });
 })();

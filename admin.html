@@ -4,11 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>10-Second Stock Admin Demo | Ultra Football Shirts — Yarm (Concept Demo)</title>
-  <meta name="description" content="Interactive 10-second phone stock admin concept demo for managing 1-of-1 football shirts at Ultra Football Shirts, 2 Danby Wynd, Yarm.">
+  <title>10-Second Handheld Rail Pad Demo | Ultra Football Shirts — Yarm (Concept Demo)</title>
+  <meta name="description" content="Interactive 10-second handheld stock-room inventory pad demo for managing 1-of-1 football shirts at Ultra Football Shirts, 2 Danby Wynd, Yarm.">
+  <meta name="theme-color" content="#0D1115">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -18,19 +20,31 @@
   <div class="concept-banner" role="region" aria-label="Concept website notice">
     <div class="container concept-banner__inner">
       <p class="concept-banner__text">Concept design by Mark Aszkenasy – not the official website of Ultra Football Shirts.</p>
-      <a class="concept-banner__link" href="index.html#stock-room">← Back to Live Stock Room</a>
+      <a class="concept-banner__link" href="index.html#stock-room">&larr; Back to Swing-Tag Stock Room</a>
     </div>
   </div>
 
-  <!-- Floodlight Midnight Header -->
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a class="brand-lockup" href="index.html">
-        <img class="brand-lockup__logo" src="images/logo-mark.svg" alt="" width="40" height="40">
-        <span class="brand-lockup__text">
-          <span class="brand-lockup__name">Ultra Football Shirts</span>
-          <span class="brand-lockup__sub">2 Danby Wynd · Yarm TS15 9SF</span>
+  <!-- Floodlight Stadium Scoreboard Strip -->
+  <div class="scoreboard-strip">
+    <div class="container scoreboard-strip__inner">
+      <span class="scoreboard-led">
+        <span class="scoreboard-led__dot" aria-hidden="true"></span>
+        <span>LIVE RAIL &middot; 2 DANBY WYND, YARM TS15 9SF &middot; AUTHENTIC 1-OF-1 RETRO &amp; CLASSIC KITS &middot; ZERO REPROS</span>
+      </span>
+      <span class="scoreboard-strip__meta">HANDHELD OWNER INVENTORY PAD</span>
+    </div>
+  </div>
+
+  <!-- Woven Jacquard Neck-Label Navbar -->
+  <header class="neck-label-header">
+    <div class="container neck-label-header__inner">
+      <a class="jacquard-label" href="index.html">
+        <img class="jacquard-label__logo" src="images/logo-mark.svg" alt="" width="36" height="36">
+        <span class="jacquard-label__text">
+          <span class="jacquard-label__top">ULTRA // EST. YARM</span>
+          <span class="jacquard-label__sub">2 DANBY WYND &middot; TS15 9SF</span>
         </span>
+        <span class="jacquard-size-pip">SIZE [ALL]</span>
       </a>
 
       <button
@@ -49,73 +63,100 @@
         <ul class="primary-nav__list">
           <li><a class="primary-nav__link" href="index.html">Stock Room</a></li>
           <li><a class="primary-nav__link" href="sell-find.html">Sell / Trade &amp; Grading</a></li>
-          <li><a class="primary-nav__link" href="index.html#visit-danby-wynd">Visit 2 Danby Wynd</a></li>
-          <li><a class="primary-nav__link primary-nav__link--admin" href="admin.html" aria-current="page">Owner Admin Demo</a></li>
+          <li><a class="primary-nav__link" href="index.html#visit-danby-wynd">2 Danby Wynd</a></li>
+          <li><a class="primary-nav__link primary-nav__link--admin" href="admin.html" aria-current="page">Owner Scanner Demo</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main id="main-content">
-    <!-- Admin Demo Header -->
-    <section class="hero dark-surface" aria-labelledby="admin-hero-heading">
+    <!-- Handheld Inventory Scanner Header -->
+    <section class="fanzine-subhero dark-zone" aria-labelledby="admin-hero-heading">
       <div class="container">
-        <span class="eyebrow eyebrow--dark">Owner Walkthrough · Zero Monthly Platform Bloat</span>
-        <h1 id="admin-hero-heading" class="hero__title" style="max-width:22ch;">
-          10-Second Phone Stock Admin <span class="hero__title-highlight">Built for 1-of-1 Shirts.</span>
+        <div class="programme-meta-bar">
+          <span><strong>OWNER WALKTHROUGH</strong> // HANDHELD STOCK-ROOM INVENTORY PAD</span>
+          <span>ZERO MONTHLY PLATFORM BLOAT</span>
+        </div>
+
+        <h1 id="admin-hero-heading" class="masthead-title" style="max-width:22ch;">
+          10-SECOND PHONE RAIL PAD &mdash; <span class="masthead-title__accent">BUILT FOR 1-OF-1 KITS</span>
         </h1>
-        <p class="hero__lead">
-          Managing single-piece vintage shirts shouldn’t require a complex £30/month e-commerce dashboard. When a shirt sells over the counter at <strong>2 Danby Wynd</strong>, mark it <strong>Reserved</strong> or <strong>Sold</strong> in one tap — or list a fresh arrival from your phone in seconds.
+        <p style="color:var(--ink-muted-dark); max-width:60ch; margin:0.9rem 0 1.25rem;">
+          When a one-off shirt sells over the counter at <strong>2 Danby Wynd</strong>, tap <strong>AVAILABLE</strong>, <strong>RESERVED</strong> or <strong>SOLD</strong> below—or punch in a fresh arrival in 10 seconds.
         </p>
 
-        <div class="hero__actions" style="margin-bottom:0;">
-          <a class="btn btn--primary" href="index.html#stock-room">View Live Stock Room →</a>
-          <button type="button" id="reset-stock-btn" class="btn btn--outline-dark">Reset Demo Stock</button>
+        <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+          <a class="btn btn--floodlight" href="index.html#stock-room">Inspect Live Swing-Tag Rail &rarr;</a>
+          <button type="button" id="reset-stock-btn" class="btn btn--ghost-dark">Reset Demo Rail</button>
         </div>
       </div>
     </section>
 
-    <!-- Main Interactive Admin Workspace -->
+    <!-- Main Handheld Stock-Room Inventory Workspace -->
     <section class="section" aria-labelledby="admin-workspace-heading">
       <div class="container">
-        <!-- Clear Local Browser Session Notice -->
         <div class="stock-notice" role="note">
           <p class="stock-notice__text">
-            <strong>Local Browser Tab Demo Notice:</strong> Any shirts you add or status toggles you tap below stay strictly local to this browser tab (<code>sessionStorage</code>) for demonstration purposes and immediately update <a href="index.html#stock-room">index.html (Stock Room)</a> during your session.
+            <strong>Local Browser Demo Notice:</strong> Tapping status pills or adding a shirt below stays strictly inside your local browser storage and updates <a href="index.html#stock-room">index.html (Swing-Tag Stock Room)</a> immediately.
           </p>
         </div>
 
-        <h2 id="admin-workspace-heading" class="section-header__title">Live Danby Wynd Rail Overview</h2>
+        <!-- Handheld Scanner Bezel & Live Counter Stats -->
+        <div class="scanner-shell" aria-labelledby="admin-workspace-heading">
+          <div class="scanner-shell__bezel">
+            <span id="admin-workspace-heading">DANBY WYND RAIL SCANNER // LIVE COUNTERS</span>
+            <span>SYNC: ACTIVE</span>
+          </div>
 
-        <!-- Live Counters -->
-        <div class="admin-stats" aria-label="Sample stock summary counts">
-          <div class="admin-stat">
-            <span class="admin-stat__label">Total Rail Pieces</span>
-            <span id="stat-total" class="admin-stat__num">8</span>
-          </div>
-          <div class="admin-stat">
-            <span class="admin-stat__label">Available</span>
-            <span id="stat-available" class="admin-stat__num">7</span>
-          </div>
-          <div class="admin-stat">
-            <span class="admin-stat__label">Reserved (Hold)</span>
-            <span id="stat-reserved" class="admin-stat__num">1</span>
-          </div>
-          <div class="admin-stat">
-            <span class="admin-stat__label">Marked Sold</span>
-            <span id="stat-sold" class="admin-stat__num">0</span>
+          <div class="admin-stats" aria-label="Live rail stock summary counts">
+            <div class="admin-stat admin-stat--emerald">
+              <span class="admin-stat__label">On Rail (Available)</span>
+              <span id="stat-available" class="admin-stat__num">7</span>
+            </div>
+            <div class="admin-stat admin-stat--amber">
+              <span class="admin-stat__label">Held at Counter</span>
+              <span id="stat-reserved" class="admin-stat__num">1</span>
+            </div>
+            <div class="admin-stat">
+              <span class="admin-stat__label">Sold</span>
+              <span id="stat-sold" class="admin-stat__num">0</span>
+            </div>
+            <div class="admin-stat">
+              <span class="admin-stat__label">Total Tagged</span>
+              <span id="stat-total" class="admin-stat__num">8</span>
+            </div>
           </div>
         </div>
 
-        <div id="admin-live-toast" class="demo-feedback" role="status" aria-live="polite" style="margin-top:0; margin-bottom:1.5rem;" hidden></div>
+        <div id="admin-live-toast" class="demo-feedback" role="status" aria-live="polite" style="margin-top:0; margin-bottom:1.4rem;" hidden></div>
 
         <div class="admin-layout">
-          <!-- Panel 1: Add 1-of-1 Shirt -->
+          <!-- Column 1: 1-Tap Rail Inventory List -->
+          <div>
+            <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:0.5rem; margin-bottom:0.8rem;">
+              <h2 style="font-size:1.35rem; text-transform:uppercase; margin:0;">1-Tap Rail Status Pad</h2>
+              <a class="btn btn--floodlight" style="padding:0.42rem 0.8rem; font-size:0.78rem;" href="index.html#stock-room">
+                View Shopfront Swing-Tags &rarr;
+              </a>
+            </div>
+            <p style="margin-top:0; font-size:0.87rem; color:var(--ink-soft);">
+              Tap <strong>AVAILABLE</strong>, <strong>RESERVED</strong> or <strong>SOLD</strong> on any garment below to update its swing-tag status immediately.
+            </p>
+
+            <div id="admin-stock-list" class="admin-rail-list">
+              <noscript>
+                <p>Enable JavaScript to test interactive 1-tap rail status toggles.</p>
+              </noscript>
+            </div>
+          </div>
+
+          <!-- Column 2: 10-Second New Swing-Tag Printer Form -->
           <div class="form-panel">
-            <span class="eyebrow eyebrow--light">Quick Rail Upload</span>
-            <h3 style="font-size:1.35rem; margin-bottom:0.4rem;">Add 1-of-1 Shirt to Demo Rail</h3>
-            <p style="margin-top:0; font-size:0.88rem; color:var(--ink-secondary);">
-              Test adding a sample listing — in the live build you would snap a quick phone photo of the shirt on the hanger and publish straight to the rail.
+            <span class="zine-tag zine-tag--emerald">10-SECOND SWING-TAG PRINTER</span>
+            <h2 style="font-size:1.3rem; text-transform:uppercase; margin-bottom:0.4rem;">Add 1-of-1 Shirt to Rail</h2>
+            <p style="margin-top:0; font-size:0.86rem; color:var(--ink-soft);">
+              Test adding a sample piece—on the live site you snap a quick phone photo on the hanger and publish straight to the rail.
             </p>
 
             <form id="add-shirt-form" class="form-grid">
@@ -134,9 +175,10 @@
                 <div class="form-field">
                   <label for="admin-era">Era</label>
                   <select id="admin-era" name="era" class="form-control">
-                    <option value="1980s–90s">1980s–90s</option>
+                    <option value="1980s">1980s</option>
+                    <option value="1990s" selected>1990s</option>
                     <option value="2000s">2000s</option>
-                    <option value="Modern Classics">Modern Classics</option>
+                    <option value="Modern">Modern</option>
                   </select>
                 </div>
 
@@ -155,11 +197,11 @@
                 <div class="form-field">
                   <label for="admin-condition">Condition grade</label>
                   <select id="admin-condition" name="condition" class="form-control">
-                    <option value="BNWT">BNWT</option>
+                    <option value="10/10 BNWT">10/10 BNWT</option>
                     <option value="9.5/10 Mint">9.5/10 Mint</option>
-                    <option value="9/10 Excellent" selected>9/10 Excellent</option>
+                    <option value="9/10 Mint" selected>9/10 Mint</option>
                     <option value="8/10 Very Good">8/10 Very Good</option>
-                    <option value="7/10 Good">7/10 Good</option>
+                    <option value="7/10 Match-Worn">7/10 Match-Worn</option>
                   </select>
                 </div>
 
@@ -182,37 +224,18 @@
                   <option value="amber-chevrons">Matchday Amber &amp; Charcoal Chevrons</option>
                   <option value="sky-white-stripes">Albiceleste Sky &amp; White Stripes</option>
                   <option value="viola-halves">Viola &amp; Chalk Halves</option>
-                  <option value="turf-pinstripes">Turf Emerald &amp; Gold Pinstripes</option>
-                  <option value="midnight-sash">Midnight &amp; Turf Diagonal Sash</option>
+                  <option value="turf-pinstripes">Subbuteo Emerald &amp; Gold Pinstripes</option>
+                  <option value="midnight-sash">Midnight &amp; Emerald Diagonal Sash</option>
                   <option value="navy-copper-quarters">Navy &amp; Copper Quarters</option>
                 </select>
               </div>
 
-              <button type="submit" class="btn btn--primary btn--block">
-                + Add 1-of-1 Shirt to Demo Stock Room
+              <button type="submit" class="btn btn--emerald btn--block">
+                + Print Swing-Tag &amp; Add to Rail
               </button>
 
               <div id="admin-form-feedback" class="demo-feedback" role="status" aria-live="polite" hidden></div>
             </form>
-          </div>
-
-          <!-- Panel 2: 1-Tap Status Toggles -->
-          <div>
-            <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:0.5rem; margin-bottom:0.85rem;">
-              <h3 style="font-size:1.35rem; margin:0;">1-Tap Rail Status Toggles</h3>
-              <a class="btn btn--amber" style="padding:0.45rem 0.85rem; font-size:0.82rem;" href="index.html#stock-room">
-                Check Changes on Shopfront →
-              </a>
-            </div>
-            <p style="margin-top:0; font-size:0.88rem; color:var(--ink-secondary);">
-              Tap <strong>Available</strong>, <strong>Reserved</strong>, or <strong>Sold</strong> on any sample listing below, then open the Stock Room to see its badge and reservation button update automatically.
-            </p>
-
-            <div id="admin-stock-list" class="admin-rail-list">
-              <noscript>
-                <p>Enable JavaScript to test interactive 1-tap stock status toggles in this browser tab.</p>
-              </noscript>
-            </div>
           </div>
         </div>
       </div>
@@ -226,7 +249,7 @@
         <div>
           <h2>Ultra Football Shirts</h2>
           <p>
-            Independent classic, retro, and collector football shirt shop tucked down Danby Wynd off Yarm High Street.
+            Independent classic, retro and collector football shirt kit room tucked down cobbled Danby Wynd off Yarm High Street.
           </p>
           <p>
             <strong>Address:</strong> 2 Danby Wynd, Yarm TS15 9SF<br>
@@ -236,12 +259,12 @@
         </div>
 
         <div>
-          <h3>Explore Concept Site</h3>
+          <h3>Matchday Index</h3>
           <ul class="footer-list">
-            <li><a href="index.html">Live 1-of-1 Stock Room</a></li>
-            <li><a href="sell-find.html">Condition Grading &amp; Sell/Trade</a></li>
-            <li><a href="sell-find.html#shirt-finder-section">Grail / Shirt Finder Enquiry</a></li>
-            <li><a href="admin.html">Owner 10-Second Stock Admin Demo</a></li>
+            <li><a href="index.html">1-of-1 Swing-Tag Stock Room</a></li>
+            <li><a href="sell-find.html">Sell / Trade &amp; Grading Guide</a></li>
+            <li><a href="sell-find.html#shirt-finder-section">Grail / Shirt Finder Ticket</a></li>
+            <li><a href="admin.html">Owner 10-Second Scanner Demo</a></li>
           </ul>
         </div>
 
@@ -253,7 +276,7 @@
                 href="https://www.google.com/maps/search/?api=1&amp;query=Ultra+Football+Shirts+2+Danby+Wynd+Yarm+TS15+9SF"
                 target="_blank"
                 rel="noopener noreferrer">
-                Directions on Google Maps ↗
+                Directions on Google Maps &nearr;
               </a>
             </li>
             <li>Social / Email: [Email / Instagram – owner to confirm]</li>
@@ -263,8 +286,8 @@
       </div>
 
       <div class="site-footer__legal">
-        <p><strong>Concept Disclaimer:</strong> Concept design by Mark Aszkenasy – not the official website of Ultra Football Shirts. All sample listings, condition policies, hours, and prices marked in brackets are placeholders awaiting owner confirmation.</p>
-        <p><strong>Illustrative Image Credit:</strong> Editorial photographs (<code>images/hero.jpg</code>, <code>images/feature.jpg</code>) are AI-generated illustrative images created for concept demonstration; shirt card graphics are original non-branded geometric SVG illustrations.</p>
+        <p><strong>Concept Disclaimer:</strong> Concept design by Mark Aszkenasy – not the official website of Ultra Football Shirts. All sample listings, condition policies, hours, pit-to-pit figures and prices marked in brackets are placeholders awaiting owner confirmation.</p>
+        <p><strong>Illustrative Image Credit:</strong> Editorial photographs (<code>images/hero.jpg</code>, <code>images/feature.jpg</code>) are AI-generated illustrative images created for concept demonstration ("Illustrative image"); shirt card graphics are original non-branded geometric SVG illustrations.</p>
         <p>Design by Mark Aszkenasy.</p>
       </div>
     </div>
@@ -273,7 +296,7 @@
   <!-- Solid Opaque Sticky Mobile Action Bar -->
   <nav class="mobile-action-bar" aria-label="Quick mobile actions">
     <div class="mobile-action-bar__grid">
-      <a class="mobile-action-bar__btn mobile-action-bar__btn--primary" href="index.html#stock-room">View Live Shop</a>
+      <a class="mobile-action-bar__btn mobile-action-bar__btn--primary" href="index.html#stock-room">View Rail</a>
       <a
         class="mobile-action-bar__btn"
         href="https://www.google.com/maps/search/?api=1&amp;query=Ultra+Football+Shirts+2+Danby+Wynd+Yarm+TS15+9SF"
