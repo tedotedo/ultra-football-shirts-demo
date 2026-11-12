@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ultra Football Shirts concept mark">
+  <rect width="64" height="64" rx="12" fill="#0E151C"/>
+  <rect x="4" y="4" width="56" height="56" rx="9" fill="none" stroke="#263545" stroke-width="2"/>
+  <!-- Geometric shirt silhouette (non-branded) -->
+  <path d="M22 14 L27 19 L32 23 L37 19 L42 14 L53 20 L48 31 L43 29 L43 50 L21 50 L21 29 L16 31 L11 20 Z" fill="#0B7A53"/>
+  <!-- Geometric central stripe -->
+  <rect x="29" y="22" width="6" height="28" fill="#F4F6F8"/>
+  <!-- Classic V-neck collar in matchday amber -->
+  <path d="M23 14 L32 24 L41 14 L37 14 L32 19.5 L27 14 Z" fill="#F2C12E"/>
+  <!-- Sleeve cuff trim -->
+  <path d="M11.8 21.8 L16.5 30.2" stroke="#F2C12E" stroke-width="2.5" stroke-linecap="square"/>
+  <path d="M52.2 21.8 L47.5 30.2" stroke="#F2C12E" stroke-width="2.5" stroke-linecap="square"/>
+</svg>

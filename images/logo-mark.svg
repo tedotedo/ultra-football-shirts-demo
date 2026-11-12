@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ultra Football Shirts geometric kit emblem">
+  <rect width="64" height="64" rx="10" fill="#0E151C"/>
+  <rect x="3" y="3" width="58" height="58" rx="8" fill="none" stroke="#0B7A53" stroke-width="2"/>
+  <!-- Pitch corner arc motif -->
+  <path d="M3 15 A12 12 0 0 0 15 3" fill="none" stroke="#263545" stroke-width="1.5"/>
+  <path d="M61 15 A12 12 0 0 1 49 3" fill="none" stroke="#263545" stroke-width="1.5"/>
+  <!-- Geometric classic shirt -->
+  <path d="M21 15 L26.5 19.5 L32 24 L37.5 19.5 L43 15 L53.5 21 L48.5 31.5 L43.5 29.2 L43.5 50 L20.5 50 L20.5 29.2 L15.5 31.5 L10.5 21 Z" fill="#0B7A53"/>
+  <rect x="25" y="21" width="4" height="29" fill="#F4F6F8" opacity="0.95"/>
+  <rect x="35" y="21" width="4" height="29" fill="#F4F6F8" opacity="0.95"/>
+  <!-- Fold-over 90s collar -->
+  <path d="M21.5 14.5 L32 24.5 L42.5 14.5 L38 13.5 L32 19.5 L26 13.5 Z" fill="#F2C12E"/>
+  <!-- Woven hem tag -->
+  <rect x="36" y="44" width="5" height="3.5" fill="#F2C12E"/>
+</svg>
