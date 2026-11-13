@@ -1,0 +1,1338 @@
+/* ==========================================================================
+   ULTRA FOOTBALL SHIRTS — Concept B
+   "90s Floodlit Tunnel & Horizontal Drop Lookbook"
+   2 Danby Wynd, Yarm TS15 9SF
+   Palette:
+     Pitch Black:     #080B0F  (Tunnel Surface: #10161E, Elevated: #161F2A)
+     Floodlight Volt: #F5C518  (#080B0F ink on #F5C518 = 12.4:1 WCAG AAA)
+     Turf Green:      #12805C  (#FFFFFF ink on #12805C = 4.92:1 WCAG AA)
+   Self-hosted WOFF2 fonts ONLY · Zero external network requests
+   ========================================================================== */
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../../fonts/space-grotesk-latin.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("../../fonts/ibm-plex-sans-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("../../fonts/ibm-plex-sans-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../../fonts/ibm-plex-mono-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --pitch: #080B0F;
+  --tunnel: #10161E;
+  --tunnel-card: #151E29;
+  --tunnel-border: #253343;
+  --volt: #F5C518;
+  --volt-hover: #FFCF29;
+  --turf: #12805C;
+  --turf-hover: #0E6B4D;
+  --turf-mint: #43E2AA;
+  --chalk: #F4F6F8;
+  --chalk-muted: #B6C2CF;
+  --sold: #B32626;
+  --err: #FF7A7A;
+
+  --font-display: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --wrap: 1260px;
+  --gutter: clamp(0.85rem, 3.5vw, 2rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  background-color: var(--pitch);
+  color: var(--chalk);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.56;
+  overflow-x: clip;
+  min-height: 100vh;
+  padding-bottom: calc(5.1rem + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 900px) {
+  body {
+    padding-bottom: 0;
+  }
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--volt);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: #FFFFFF;
+}
+
+:focus-visible {
+  outline: 3px solid var(--volt);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0.5rem;
+  z-index: 3000;
+  padding: 0.65rem 1rem;
+  background: var(--volt);
+  color: var(--pitch);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 0.75rem;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ==========================================================================
+   1. TOP CONCEPT COMPLIANCE BANNER + PILL SWITCHER
+   ========================================================================== */
+.concept-banner {
+  background: var(--volt);
+  color: var(--pitch);
+  border-bottom: 2px solid var(--pitch);
+  font-size: 0.78rem;
+  line-height: 1.36;
+  padding: 0.38rem 0;
+}
+
+.concept-banner__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 0.75rem;
+}
+
+.concept-banner__text {
+  margin: 0;
+  font-weight: 600;
+  color: var(--pitch);
+  min-width: 0;
+}
+
+.concept-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(8, 11, 15, 0.09);
+  border: 1.5px solid var(--pitch);
+  border-radius: 999px;
+  padding: 0.14rem 0.22rem 0.14rem 0.55rem;
+}
+
+.concept-switcher__label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--pitch);
+  margin-right: 0.1rem;
+  white-space: nowrap;
+}
+
+.concept-switcher__pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  min-height: 42px;
+  padding: 0 0.55rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--pitch);
+  background: rgba(255, 255, 255, 0.76);
+  border: 1.5px solid var(--pitch);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.concept-switcher__pill:hover {
+  background: var(--turf);
+  color: #FFFFFF;
+}
+
+.concept-switcher__pill.is-active {
+  background: var(--pitch);
+  color: var(--volt);
+}
+
+/* ==========================================================================
+   2. FLOODLIT TUNNEL HEADER
+   ========================================================================== */
+.tunnel-header {
+  position: sticky;
+  top: 0;
+  z-index: 120;
+  background: rgba(8, 11, 15, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--tunnel-border);
+  padding: 0.55rem 0;
+}
+
+.tunnel-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 0.75rem;
+}
+
+.tunnel-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  color: #FFFFFF;
+  min-height: 44px;
+  min-width: 0;
+}
+
+.tunnel-brand__logo {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.tunnel-brand__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.tunnel-brand__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(0.88rem, 2.5vw, 1.02rem);
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+}
+
+.tunnel-brand__loc {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  color: var(--chalk-muted);
+}
+
+.tunnel-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.tunnel-nav__link {
+  display: none;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 0.75rem;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--chalk-muted);
+  text-decoration: none;
+}
+
+.tunnel-nav__link:hover {
+  background: var(--tunnel-card);
+  color: #FFFFFF;
+}
+
+@media (min-width: 820px) {
+  .tunnel-nav__link {
+    display: inline-flex;
+  }
+}
+
+.tunnel-nav__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0 0.88rem;
+  border-radius: 999px;
+  background: var(--volt);
+  color: var(--pitch);
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.rail-live-pip {
+  padding: 0.14rem 0.45rem;
+  border-radius: 999px;
+  background: var(--pitch);
+  color: var(--volt);
+  font-size: 0.68rem;
+}
+
+/* ==========================================================================
+   3. OVERSIZED TUNNEL HERO
+   ========================================================================== */
+.tunnel-hero {
+  padding: clamp(1.1rem, 3vw, 2.2rem) 0 clamp(1.5rem, 3vw, 2.4rem);
+  background: radial-gradient(circle at 18% 10%, rgba(18, 128, 92, 0.24), transparent 44%),
+              radial-gradient(circle at 86% 14%, rgba(245, 197, 24, 0.14), transparent 40%);
+}
+
+.tunnel-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.volt-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: var(--volt);
+  color: var(--pitch);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.turf-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: var(--turf);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.tunnel-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.15rem, 7.6vw, 4.85rem);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  margin: 0 0 1.25rem;
+  color: #FFFFFF;
+}
+
+.tunnel-display__volt {
+  color: var(--volt);
+}
+
+.tunnel-hero__stage {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+@media (min-width: 960px) {
+  .tunnel-hero__stage {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+.tunnel-hero__media {
+  margin: 0;
+  background: var(--tunnel);
+  border: 1px solid var(--tunnel-border);
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.tunnel-hero__img-wrap {
+  position: relative;
+  flex: 1 1 auto;
+}
+
+.tunnel-hero__img-wrap img {
+  width: 100%;
+  height: 100%;
+  min-height: 230px;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.illus-badge {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  background: rgba(8, 11, 15, 0.9);
+  color: var(--chalk);
+  border: 1px solid rgba(245, 197, 24, 0.55);
+  padding: 0.22rem 0.58rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+.tunnel-hero__caption {
+  padding: 0.65rem 0.95rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.35rem 0.75rem;
+  font-size: 0.76rem;
+  color: var(--chalk-muted);
+  border-top: 1px solid var(--tunnel-border);
+}
+
+.tunnel-hero__panel {
+  background: var(--tunnel-card);
+  border: 1px solid var(--tunnel-border);
+  border-radius: 24px;
+  padding: clamp(1.1rem, 3vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.tunnel-lead {
+  margin: 0;
+  font-size: 0.98rem;
+  color: var(--chalk);
+}
+
+.tunnel-specs {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--tunnel-border);
+  border-bottom: 1px solid var(--tunnel-border);
+}
+
+@media (min-width: 540px) {
+  .tunnel-specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.tunnel-specs dt {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--chalk-muted);
+}
+
+.tunnel-specs dd {
+  margin: 0.15rem 0 0;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.ph {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 6px;
+  background: rgba(245, 197, 24, 0.12);
+  border: 1px dashed rgba(245, 197, 24, 0.55);
+  color: #FFE885;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.tunnel-hero__btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 46px;
+  padding: 0.65rem 1.1rem;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+}
+
+.btn--volt {
+  background: var(--volt);
+  color: var(--pitch);
+  border-color: var(--volt);
+}
+
+.btn--volt:hover {
+  background: var(--volt-hover);
+  color: var(--pitch);
+}
+
+.btn--turf {
+  background: var(--turf);
+  color: #FFFFFF;
+  border-color: var(--turf);
+}
+
+.btn--turf:hover {
+  background: var(--turf-hover);
+  color: #FFFFFF;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--chalk);
+  border-color: var(--tunnel-border);
+}
+
+.btn--ghost:hover {
+  border-color: var(--volt);
+  color: #FFFFFF;
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* ==========================================================================
+   4. KINETIC MATCHDAY TICKER
+   ========================================================================== */
+.matchday-ticker {
+  background: var(--turf);
+  color: #FFFFFF;
+  border-top: 2px solid #040608;
+  border-bottom: 2px solid #040608;
+  overflow: hidden;
+  padding: 0.58rem 0;
+}
+
+.matchday-ticker__track {
+  display: flex;
+  width: max-content;
+  animation: matchday-scroll 28s linear infinite;
+}
+
+.matchday-ticker:hover .matchday-ticker__track,
+.matchday-ticker:focus-within .matchday-ticker__track {
+  animation-play-state: paused;
+}
+
+.matchday-ticker__list {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.matchday-ticker__list li {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  padding: 0 1.1rem;
+}
+
+.matchday-ticker__list li::after {
+  content: "★";
+  color: var(--volt);
+  margin-left: 1.1rem;
+}
+
+@keyframes matchday-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ==========================================================================
+   5. HORIZONTAL TOUCH-SNAP SHIRT LOOKBOOK
+   ========================================================================== */
+.section {
+  padding: clamp(2rem, 5vw, 3.5rem) 0;
+  scroll-margin-top: 4.5rem;
+}
+
+.section--console {
+  background: var(--tunnel);
+  border-top: 1px solid var(--tunnel-border);
+  border-bottom: 1px solid var(--tunnel-border);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--turf-mint);
+  margin-bottom: 0.3rem;
+}
+
+.lookbook-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.15rem;
+}
+
+.section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.6vw, 2.25rem);
+  line-height: 1.12;
+  margin: 0 0 0.4rem;
+  color: #FFFFFF;
+}
+
+.section-sub {
+  margin: 0;
+  color: var(--chalk-muted);
+  max-width: 64ch;
+}
+
+.section-sub code {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #FFE885;
+}
+
+.rail-arrows {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.arrow-btn {
+  min-height: 44px;
+  min-width: 74px;
+  padding: 0 0.9rem;
+  border-radius: 999px;
+  background: var(--tunnel-card);
+  color: var(--chalk);
+  border: 1px solid var(--tunnel-border);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.arrow-btn:hover {
+  background: var(--volt);
+  color: var(--pitch);
+  border-color: var(--volt);
+}
+
+.filter-bar {
+  background: var(--tunnel);
+  border: 1px solid var(--tunnel-border);
+  border-radius: 20px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.15rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem 1.25rem;
+}
+
+.filter-axis {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.filter-axis__label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--chalk-muted);
+  margin-right: 0.15rem;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.chip {
+  min-height: 42px;
+  min-width: 44px;
+  padding: 0 0.75rem;
+  border-radius: 999px;
+  background: var(--tunnel-card);
+  color: var(--chalk);
+  border: 1px solid var(--tunnel-border);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chip.is-active,
+.chip[aria-pressed="true"] {
+  background: var(--volt);
+  color: var(--pitch);
+  border-color: var(--volt);
+}
+
+.filter-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--chalk-muted);
+}
+
+.reset-chip {
+  min-height: 42px;
+  padding: 0 0.75rem;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--volt);
+  border: 1px solid rgba(245, 197, 24, 0.45);
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  cursor: pointer;
+}
+
+.lookbook-rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(min(84vw, 305px), 320px);
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 0.25rem;
+  padding: 0.25rem 0.1rem 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--volt) var(--tunnel);
+}
+
+.drop-card {
+  scroll-snap-align: start;
+  background: linear-gradient(180deg, #17212D 0%, #101720 100%);
+  border: 1px solid var(--tunnel-border);
+  border-radius: 22px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.drop-card--sold {
+  opacity: 0.78;
+}
+
+.drop-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+.drop-card__era {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.2rem 0.52rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--chalk);
+}
+
+.status-pill {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.2rem 0.56rem;
+  border-radius: 999px;
+}
+
+.status-pill--avail {
+  background: var(--turf);
+  color: #FFFFFF;
+}
+
+.status-pill--res {
+  background: var(--volt);
+  color: var(--pitch);
+}
+
+.status-pill--sold {
+  background: var(--sold);
+  color: #FFFFFF;
+}
+
+.drop-card__stage {
+  position: relative;
+  background: radial-gradient(circle at 50% 42%, rgba(245, 197, 24, 0.16), rgba(8, 11, 15, 0.85) 72%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 0.9rem 0.75rem 0.65rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.drop-card__stage svg {
+  width: 128px;
+  height: 122px;
+}
+
+.drop-card__size-tag {
+  position: absolute;
+  top: 0.55rem;
+  left: 0.55rem;
+  background: var(--pitch);
+  color: var(--volt);
+  border: 1px solid rgba(245, 197, 24, 0.5);
+  border-radius: 8px;
+  padding: 0.14rem 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.drop-card__sample {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  color: var(--chalk-muted);
+  text-align: center;
+}
+
+.drop-card__title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.24;
+  margin: 0;
+  color: #FFFFFF;
+}
+
+.drop-card__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--chalk-muted);
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--tunnel-border);
+}
+
+.drop-card__cta {
+  margin-top: auto;
+  width: 100%;
+  min-height: 44px;
+  border-radius: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1.5px solid var(--volt);
+  background: var(--volt);
+  color: var(--pitch);
+}
+
+.drop-card__cta[disabled] {
+  background: #1C2633;
+  color: var(--chalk-muted);
+  border-color: var(--tunnel-border);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   6. 1-TAP OWNER RAIL STATUS TOGGLE DEMO ON-PAGE
+   ========================================================================== */
+.owner-console {
+  background: var(--pitch);
+  border: 1.5px solid var(--tunnel-border);
+  border-radius: 24px;
+  padding: clamp(1.1rem, 3.5vw, 2rem);
+}
+
+.owner-console__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.owner-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+@media (min-width: 860px) {
+  .owner-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.owner-row {
+  background: var(--tunnel-card);
+  border: 1px solid var(--tunnel-border);
+  border-radius: 16px;
+  padding: 0.8rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.owner-row__title {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #FFFFFF;
+}
+
+.owner-row__id {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--volt);
+  margin-right: 0.4rem;
+}
+
+.owner-row__btns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.state-btn {
+  min-height: 42px;
+  padding: 0 0.35rem;
+  border-radius: 10px;
+  background: var(--pitch);
+  color: var(--chalk-muted);
+  border: 1px solid var(--tunnel-border);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.state-btn.is-on-avail {
+  background: var(--turf);
+  color: #FFFFFF;
+  border-color: var(--turf);
+}
+
+.state-btn.is-on-res {
+  background: var(--volt);
+  color: var(--pitch);
+  border-color: var(--volt);
+}
+
+.state-btn.is-on-sold {
+  background: var(--sold);
+  color: #FFFFFF;
+  border-color: var(--sold);
+}
+
+/* ==========================================================================
+   7. SELL / TRADE SECTION & CLICK & COLLECT SHEET
+   ========================================================================== */
+.sell-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.3rem;
+  align-items: start;
+}
+
+@media (min-width: 920px) {
+  .sell-split {
+    grid-template-columns: 0.95fr 1.05fr;
+  }
+}
+
+.feature-card {
+  margin: 0;
+  background: var(--tunnel-card);
+  border: 1px solid var(--tunnel-border);
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.feature-card__img {
+  position: relative;
+}
+
+.feature-card__img img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.feature-card__cap {
+  padding: 1.15rem;
+}
+
+.feature-card__cap h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
+  color: #FFFFFF;
+}
+
+.feature-card__cap p {
+  margin: 0 0 0.7rem;
+  font-size: 0.88rem;
+  color: var(--chalk-muted);
+}
+
+.map-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.counter-form-card {
+  background: var(--tunnel-card);
+  border: 1px solid var(--tunnel-border);
+  border-radius: 22px;
+  padding: clamp(1.1rem, 3.5vw, 1.85rem);
+}
+
+.tunnel-form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.t-row-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+}
+
+@media (min-width: 640px) {
+  .t-row-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.t-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+  min-width: 0;
+}
+
+.t-field label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--chalk);
+}
+
+.req {
+  color: var(--volt);
+}
+
+.t-field input,
+.t-field select,
+.t-field textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.65rem 0.8rem;
+  border-radius: 12px;
+  border: 1.5px solid #35475C;
+  background: #0B1016;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.t-err {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--err);
+}
+
+.t-err:empty {
+  display: none;
+}
+
+.demo-banner-feedback {
+  padding: 0.95rem 1rem;
+  border-radius: 14px;
+  background: rgba(18, 128, 92, 0.22);
+  border: 1.5px solid var(--turf-mint);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+/* Reserve Modal Sheet */
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  background: rgba(4, 6, 9, 0.82);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0.6rem;
+}
+
+.sheet-backdrop[hidden] {
+  display: none !important;
+}
+
+@media (min-width: 700px) {
+  .sheet-backdrop {
+    align-items: center;
+  }
+}
+
+.sheet-panel {
+  width: 100%;
+  max-width: 560px;
+  max-height: 92vh;
+  overflow-y: auto;
+  background: var(--tunnel-card);
+  border: 1.5px solid var(--volt);
+  border-radius: 22px;
+  padding: 1.2rem;
+}
+
+.sheet-panel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.sheet-panel__head h2 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin: 0.35rem 0 0;
+}
+
+.sheet-close {
+  min-height: 42px;
+  padding: 0 0.8rem;
+  border-radius: 999px;
+  background: var(--pitch);
+  color: var(--chalk);
+  border: 1px solid var(--tunnel-border);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  cursor: pointer;
+}
+
+.sheet-sub {
+  margin: 0 0 1rem;
+  font-size: 0.86rem;
+  color: var(--chalk-muted);
+}
+
+/* ==========================================================================
+   8. FOOTER & MOBILE DOCK
+   ========================================================================== */
+.tunnel-footer {
+  background: #05070A;
+  border-top: 1px solid var(--tunnel-border);
+  padding: 2.3rem 0;
+  color: var(--chalk-muted);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.4rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--tunnel-border);
+}
+
+@media (min-width: 760px) {
+  .footer-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+.tunnel-footer h2,
+.tunnel-footer h3 {
+  font-family: var(--font-display);
+  color: #FFFFFF;
+  margin-top: 0;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+}
+
+.footer-legal {
+  padding-top: 1.15rem;
+  font-size: 0.8rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.footer-legal p {
+  margin: 0;
+}
+
+.mobile-tunnel-dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  padding: 0.45rem var(--gutter) calc(0.45rem + env(safe-area-inset-bottom));
+  background: #0B1016;
+  border-top: 1px solid var(--tunnel-border);
+}
+
+@media (min-width: 900px) {
+  .mobile-tunnel-dock {
+    display: none;
+  }
+}
+
+.dock-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 0.4rem;
+  border-radius: 10px;
+  background: var(--tunnel-card);
+  color: var(--chalk);
+  border: 1px solid var(--tunnel-border);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dock-btn--volt {
+  background: var(--volt);
+  color: var(--pitch);
+  border-color: var(--volt);
+}
+
+.dock-btn--turf {
+  background: var(--turf);
+  color: #FFFFFF;
+  border-color: var(--turf);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .matchday-ticker__track {
+    animation: none !important;
+    width: 100%;
+  }
+  .matchday-ticker__list {
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+    padding-inline: var(--gutter);
+  }
+  .matchday-ticker__list[aria-hidden="true"] {
+    display: none;
+  }
+}

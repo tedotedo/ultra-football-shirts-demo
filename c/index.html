@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Ultra Football Shirts — Collector's Marketplace App, Yarm (Concept C)</title>
+  <meta name="description" content="Concept C sunlit collector marketplace app for Ultra Football Shirts at 2 Danby Wynd, Yarm TS15 9SF: 2-column rail catalog, inline 1-tap owner scanner, and 3-step Click &amp; Collect / Shirt Finder stepper.">
+  <meta name="theme-color" content="#F7F8FA">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/ibm-plex-sans-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Persistent Top Concept Banner -->
+  <div class="concept-banner" role="region" aria-label="Concept website notice">
+    <div class="wrap concept-banner__inner">
+      <p class="concept-banner__text">Concept design by Mark Aszkenasy – not the official website of Ultra Football Shirts.</p>
+      <div class="concept-banner__controls">
+        <nav class="concept-switcher" aria-label="Concept version switcher">
+          <span class="concept-switcher__label">Concept:</span>
+          <a class="concept-switcher__pill" href="../index.html">A</a>
+          <a class="concept-switcher__pill" href="../b/index.html">B</a>
+          <a class="concept-switcher__pill is-active" href="index.html" aria-current="page">C</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Gallery Header + Segmented Top Tabs -->
+  <header class="gallery-header">
+    <div class="wrap gallery-header__top">
+      <a class="market-brand" href="#top">
+        <img class="market-brand__logo" src="../images/logo-mark.svg" width="32" height="32" alt="">
+        <span class="market-brand__copy">
+          <span class="market-brand__title">Ultra Football Shirts</span>
+          <span class="market-brand__sub">2 Danby Wynd &middot; Yarm TS15 9SF</span>
+        </span>
+      </a>
+
+      <span class="avail-pill" id="top-avail-pill" aria-live="polite">7 Available</span>
+    </div>
+
+    <div class="segmented-bar">
+      <div class="wrap">
+        <nav class="segmented-tabs" aria-label="Marketplace sections">
+          <a class="seg-tab is-active" href="#rail" data-seg-tab="rail">Rail</a>
+          <a class="seg-tab" href="#shirt-finder" data-seg-tab="finder">Shirt Finder</a>
+          <button type="button" class="seg-tab" id="seg-scanner-btn" data-seg-tab="scanner" aria-expanded="true" aria-controls="owner-scanner-drawer">
+            Owner Scanner
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Clean Gallery Intro & 2x2 Bento Grid -->
+    <section class="section section--intro" id="top" aria-labelledby="intro-heading">
+      <div class="wrap">
+        <div class="intro-split">
+          <div class="intro-copy">
+            <span class="emerald-kicker">AUTHENTIC 1-OF-1 ARCHIVE &middot; ZERO REPROS</span>
+            <h1 id="intro-heading">Classic &amp; collector football shirts down Danby Wynd.</h1>
+            <p class="intro-lead">
+              Browse one-off 1980s, 90s, 2000s and modern shirts by era and size, hold a piece on Click &amp; Collect to inspect stitch-by-stitch in <strong>Yarm</strong>, or lodge a grail finder request.
+            </p>
+            <div class="intro-actions">
+              <a class="btn btn--emerald" href="#rail">Browse 1-of-1 Rail &darr;</a>
+              <a class="btn btn--outline" href="#shirt-finder">Click &amp; Collect / Finder</a>
+            </div>
+          </div>
+
+          <figure class="gallery-hero-photo">
+            <div class="gallery-hero-photo__frame">
+              <img
+                src="../images/hero.jpg"
+                width="1440"
+                height="803"
+                alt="Rails of colourful retro and classic football shirts hanging inside an independent football kit room"
+                fetchpriority="high"
+              >
+              <span class="illus-tag">Illustrative image</span>
+            </div>
+            <figcaption class="gallery-hero-photo__cap">
+              <span>Concept rail visual — real 2 Danby Wynd photography to be supplied by owner.</span>
+              <span>AI concept photo</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Clean 2x2 Bento Intro -->
+        <div class="bento-2x2" aria-label="Shop highlights">
+          <article class="bento-card">
+            <span class="bento-card__kicker">LOCATION</span>
+            <h2 class="bento-card__title">2 Danby Wynd</h2>
+            <p class="bento-card__text">Cobbled wynd off Yarm High Street, TS15 9SF.</p>
+          </article>
+
+          <article class="bento-card bento-card--emerald">
+            <span class="bento-card__kicker">INSPECT FIT &amp; TAGS</span>
+            <h2 class="bento-card__title">Click &amp; Collect</h2>
+            <p class="bento-card__text">Hold a 1-of-1 shirt in store <span class="ph">[Hold window – owner to confirm]</span>.</p>
+          </article>
+
+          <article class="bento-card">
+            <span class="bento-card__kicker">COUNTER DESK</span>
+            <h2 class="bento-card__title">Buy / Sell / Trade</h2>
+            <p class="bento-card__text">Original kits bought &amp; traded <span class="ph">[Buy/trade terms – owner to confirm]</span>.</p>
+          </article>
+
+          <article class="bento-card">
+            <span class="bento-card__kicker">HOURS &amp; CONTACT</span>
+            <h2 class="bento-card__title"><span class="ph">[Phone to confirm]</span></h2>
+            <p class="bento-card__text"><span class="ph">[Shop opening hours – owner to confirm]</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toggleable Inline Owner Scanner Panel -->
+    <section class="scanner-section" id="owner-scanner" aria-labelledby="scanner-heading">
+      <div class="wrap">
+        <div class="scanner-card">
+          <div class="scanner-card__bar">
+            <div>
+              <span class="scanner-badge">INLINE OWNER SCANNER DEMO</span>
+              <h2 id="scanner-heading">1-Tap Counter Status Flip (Available &harr; Reserved)</h2>
+            </div>
+            <div class="scanner-card__actions">
+              <button type="button" class="btn-small" id="toggle-scanner-visibility" aria-expanded="true" aria-controls="owner-scanner-drawer">
+                Hide Scanner
+              </button>
+              <button type="button" class="btn-small" id="reset-c-stock">Reset Stock</button>
+            </div>
+          </div>
+
+          <div id="owner-scanner-drawer" class="scanner-drawer">
+            <p class="scanner-hint">
+              Built for busy matchdays at 2 Danby Wynd without £30/month Shopify complexity: tap any shirt row below to flip it between <strong>Available</strong> and <strong>Reserved</strong> in one tap and watch the catalog below update immediately.
+            </p>
+            <div class="scanner-grid" id="scanner-rows" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clean 2-Column Mobile Catalog Grid -->
+    <section class="section" id="rail" aria-labelledby="rail-heading">
+      <div class="wrap">
+        <div class="catalog-head">
+          <div>
+            <span class="emerald-kicker">SAMPLE 1-OF-1 RAIL</span>
+            <h2 id="rail-heading">Danby Wynd Collector Catalog</h2>
+            <p class="section-sub">
+              Non-branded geometric sample listings (<code>[Illustrative sample listing – owner stock to supply]</code>). Tap <strong>Hold / Enquire</strong> on any shirt to load it straight into the 3-Step Stepper.
+            </p>
+          </div>
+          <p class="live-tally" id="catalog-live-count" aria-live="polite">8 of 8 shirts &middot; 7 Available</p>
+        </div>
+
+        <!-- Era & Size Filter Chips -->
+        <div class="catalog-filters" role="region" aria-label="Filter catalog shirts">
+          <div class="chip-row" role="group" aria-label="Filter by decade">
+            <button type="button" class="f-chip is-on" data-c-era="All" aria-pressed="true">All Eras</button>
+            <button type="button" class="f-chip" data-c-era="1980s" aria-pressed="false">1980s</button>
+            <button type="button" class="f-chip" data-c-era="1990s" aria-pressed="false">1990s</button>
+            <button type="button" class="f-chip" data-c-era="2000s" aria-pressed="false">2000s</button>
+            <button type="button" class="f-chip" data-c-era="Modern" aria-pressed="false">Modern</button>
+          </div>
+
+          <div class="chip-row" role="group" aria-label="Filter by size">
+            <button type="button" class="f-chip is-on" data-c-size="All" aria-pressed="true">All Sizes</button>
+            <button type="button" class="f-chip" data-c-size="S" aria-pressed="false">S</button>
+            <button type="button" class="f-chip" data-c-size="M" aria-pressed="false">M</button>
+            <button type="button" class="f-chip" data-c-size="L" aria-pressed="false">L</button>
+            <button type="button" class="f-chip" data-c-size="XL" aria-pressed="false">XL</button>
+            <button type="button" class="f-chip f-chip--avail" id="avail-only-chip" aria-pressed="false">Available only</button>
+          </div>
+        </div>
+
+        <!-- 2-Column Mobile Catalog Grid -->
+        <div class="catalog-grid" id="c-catalog-grid">
+          <noscript>
+            <p>Enable JavaScript to filter the sample 2-column catalog and test the 1-tap owner scanner.</p>
+          </noscript>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobbin 3-Step Click & Collect / Shirt-Finder Stepper -->
+    <section class="section section--tinted" id="shirt-finder" aria-labelledby="finder-stepper-heading">
+      <div class="wrap stepper-container">
+        <div class="catalog-head">
+          <div>
+            <span class="emerald-kicker">3-STEP COUNTER FLOW</span>
+            <h2 id="finder-stepper-heading">Click &amp; Collect Hold or Shirt Finder</h2>
+            <p class="section-sub">
+              Reserve a shirt to inspect at 2 Danby Wynd, hunt down a specific retro grail, or bring classic shirts in to sell or trade.
+            </p>
+          </div>
+        </div>
+
+        <div class="market-stepper">
+          <!-- Step Indicator -->
+          <div class="m-step-header">
+            <div class="m-step-pills" role="list" aria-label="Request steps">
+              <button type="button" class="m-step-pill is-current" data-m-step="1" role="listitem">
+                <span class="m-step-pill__idx">1</span>
+                <span class="m-step-pill__txt">Mode &amp; Shirt</span>
+              </button>
+              <button type="button" class="m-step-pill" data-m-step="2" role="listitem">
+                <span class="m-step-pill__idx">2</span>
+                <span class="m-step-pill__txt">Size &amp; Handover</span>
+              </button>
+              <button type="button" class="m-step-pill" data-m-step="3" role="listitem">
+                <span class="m-step-pill__idx">3</span>
+                <span class="m-step-pill__txt">Details</span>
+              </button>
+            </div>
+            <div class="m-progress" aria-hidden="true">
+              <div class="m-progress__bar" id="m-progress-bar" style="width: 33.33%;"></div>
+            </div>
+            <p class="m-step-caption" id="m-step-caption" aria-live="polite">Step 1 of 3 — Choose request mode &amp; shirt</p>
+          </div>
+
+          <form id="c-market-form" novalidate>
+            <!-- STEP 1 -->
+            <div class="m-pane" data-m-pane="1">
+              <fieldset class="m-fieldset">
+                <legend class="m-legend">1. What would you like to do?</legend>
+                <div class="mode-cards" role="group" aria-label="Select request mode">
+                  <button type="button" class="mode-card is-selected" data-req-mode="Click & Collect Hold" aria-pressed="true">
+                    <strong>Click &amp; Collect Hold</strong>
+                    <span>Inspect a rail shirt at 2 Danby Wynd</span>
+                  </button>
+                  <button type="button" class="mode-card" data-req-mode="Shirt Finder (Grail Request)" aria-pressed="false">
+                    <strong>Shirt Finder</strong>
+                    <span>Hunt a specific club, nation or 90s kit</span>
+                  </button>
+                  <button type="button" class="mode-card" data-req-mode="Sell / Trade Shirts" aria-pressed="false">
+                    <strong>Sell / Trade</strong>
+                    <span>Bring classic shirts into the Yarm shop</span>
+                  </button>
+                </div>
+                <input type="hidden" id="m-mode-val" name="mode" value="Click & Collect Hold">
+
+                <div class="m-field" style="margin-top: 1rem;">
+                  <label for="m-shirt-input">Selected rail item or shirt description <span class="req" aria-hidden="true">*</span></label>
+                  <input
+                    id="m-shirt-input"
+                    name="shirt"
+                    type="text"
+                    required
+                    aria-describedby="m-shirt-err"
+                    value="UFS-01 · 1995–96 Teesside Crimson Chest-Band Home Style (Size L)"
+                    placeholder="e.g. UFS-01 Size L, or hunting a mid-90s Serie A shirt…"
+                  >
+                  <p class="m-err" id="m-shirt-err" role="alert"></p>
+                </div>
+              </fieldset>
+
+              <div class="m-nav m-nav--end">
+                <button type="button" class="btn btn--emerald" id="m-next-2">Next: Size &amp; Handover &rarr;</button>
+              </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="m-pane" data-m-pane="2" hidden>
+              <fieldset class="m-fieldset">
+                <legend class="m-legend">2. Preferred size &amp; handover</legend>
+
+                <div class="m-field">
+                  <label for="m-size-input">Preferred size (tap to select)</label>
+                  <div class="size-pick-row" role="group" aria-label="Select preferred shirt size">
+                    <button type="button" class="size-pick" data-pick-size="S" aria-pressed="false">S</button>
+                    <button type="button" class="size-pick" data-pick-size="M" aria-pressed="false">M</button>
+                    <button type="button" class="size-pick is-selected" data-pick-size="L" aria-pressed="true">L</button>
+                    <button type="button" class="size-pick" data-pick-size="XL" aria-pressed="false">XL</button>
+                    <button type="button" class="size-pick" data-pick-size="Any / Bundle" aria-pressed="false">Any</button>
+                  </div>
+                  <input id="m-size-input" name="size" type="text" value="L" readonly class="m-readonly">
+                </div>
+
+                <div class="m-field" style="margin-top: 0.9rem;">
+                  <label for="m-handover">Collection, postage or trade preference</label>
+                  <select id="m-handover" name="handover">
+                    <option value="Inspect & Collect at 2 Danby Wynd, Yarm">Inspect &amp; Collect at 2 Danby Wynd, Yarm TS15 9SF</option>
+                    <option value="Enquire about UK Postage [Postage options – owner to confirm]">Enquire about UK Postage [Postage options – owner to confirm]</option>
+                    <option value="Bring shirts into shop to sell/trade">Bring shirts into 2 Danby Wynd to sell or trade</option>
+                  </select>
+                </div>
+
+                <div class="m-field" style="margin-top: 0.9rem;">
+                  <label for="m-notes">Measurement check or condition notes <span class="opt">(optional)</span></label>
+                  <textarea
+                    id="m-notes"
+                    name="notes"
+                    rows="3"
+                    placeholder="e.g. Could you confirm pit-to-pit cm, or let me know if Saturday afternoon works to view?"
+                  ></textarea>
+                </div>
+              </fieldset>
+
+              <div class="m-nav">
+                <button type="button" class="btn btn--outline" id="m-back-1">&larr; Back</button>
+                <button type="button" class="btn btn--emerald" id="m-next-3">Next: Your Details &rarr;</button>
+              </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="m-pane" data-m-pane="3" hidden>
+              <fieldset class="m-fieldset">
+                <legend class="m-legend">3. Your contact details</legend>
+
+                <div class="m-summary" aria-live="polite">
+                  <div><span>Request:</span> <strong id="m-sum-mode">Click &amp; Collect Hold</strong></div>
+                  <div><span>Shirt &amp; Size:</span> <strong id="m-sum-shirt">UFS-01 (Size L)</strong></div>
+                  <div><span>Preference:</span> <strong id="m-sum-handover">Inspect at 2 Danby Wynd</strong></div>
+                </div>
+
+                <div class="m-grid-2" style="margin-top: 1rem;">
+                  <div class="m-field">
+                    <label for="m-name">Your name <span class="req" aria-hidden="true">*</span></label>
+                    <input id="m-name" name="name" type="text" autocomplete="name" required aria-describedby="m-name-err" placeholder="e.g. Chris Walker">
+                    <p class="m-err" id="m-name-err" role="alert"></p>
+                  </div>
+
+                  <div class="m-field">
+                    <label for="m-contact">Email or mobile number <span class="req" aria-hidden="true">*</span></label>
+                    <input id="m-contact" name="contact" type="text" required aria-describedby="m-contact-err" placeholder="So the shop can confirm">
+                    <p class="m-err" id="m-contact-err" role="alert"></p>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="m-nav">
+                <button type="button" class="btn btn--outline" id="m-back-2">&larr; Back</button>
+                <button type="submit" class="btn btn--emerald">Submit Request</button>
+              </div>
+              <p class="m-footnote">Client-side concept demo: zero external requests or data transmission.</p>
+            </div>
+          </form>
+
+          <div class="m-success" id="m-success" tabindex="-1" role="status" aria-live="polite" hidden>
+            <p class="m-success__exact">Demo only – in the live site this would go straight to Ultra Football Shirts.</p>
+            <p class="m-success__meta" id="m-success-meta"></p>
+            <button type="button" class="btn btn--outline" id="m-reset-stepper">Start another request</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Authenticity & Condition Grading Guide + Feature Photo -->
+    <section class="section" aria-labelledby="grading-heading">
+      <div class="wrap auth-split">
+        <figure class="auth-photo">
+          <div class="auth-photo__frame">
+            <img
+              src="../images/feature.jpg"
+              width="1200"
+              height="896"
+              alt="Folded classic 1990s football shirts arranged in a flat-lay showing woven collars and bold geometric patterns"
+              loading="lazy"
+            >
+            <span class="illus-tag">Illustrative image</span>
+          </div>
+          <figcaption class="auth-photo__cap">
+            <span>Checked stitch-by-stitch in Yarm — actual photography to be supplied by Ultra Football Shirts.</span>
+          </figcaption>
+        </figure>
+
+        <div class="grading-box">
+          <span class="emerald-kicker">COLLECTOR CONFIDENCE</span>
+          <h2 id="grading-heading">Condition Grading &amp; Danby Wynd Visit</h2>
+          <p class="section-sub" style="margin-bottom: 1rem;">
+            Every vintage piece carries honest condition notes (<span class="ph">[Grading policy – owner to confirm]</span>) and pit-to-pit measurements (<span class="ph">[Sizing format – owner to confirm]</span>):
+          </p>
+
+          <ul class="grade-list">
+            <li><strong>10/10 BNWT:</strong> Deadstock unworn archive piece with original manufacturer swing-tags.</li>
+            <li><strong>9/10 Mint:</strong> Rich weave, crisp collar &amp; cuffs, sharp crest and virtually zero pulls.</li>
+            <li><strong>8/10 Very Good:</strong> Clean matchday-ready classic with minor age-consistent wear noted transparently.</li>
+            <li><strong>7/10 Character:</strong> Honest terrace patina priced fairly for matchday wear.</li>
+          </ul>
+
+          <a
+            class="btn btn--outline"
+            href="https://www.google.com/maps/search/?api=1&amp;query=Ultra+Football+Shirts+2+Danby+Wynd+Yarm+TS15+9SF"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Directions to 2 Danby Wynd on Google Maps &nearr;
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Gallery Footer -->
+  <footer class="gallery-footer">
+    <div class="wrap">
+      <div class="footer-cols">
+        <div>
+          <h2>Ultra Football Shirts</h2>
+          <p>
+            Independent classic, retro and collector football shirt kit room at <strong>2 Danby Wynd, Yarm TS15 9SF</strong>.
+          </p>
+          <p>
+            Phone: <span class="ph">[Phone to confirm]</span> &middot;
+            Email / Social: <span class="ph">[Email / Instagram – owner to confirm]</span><br>
+            Opening hours: <span class="ph">[Shop opening hours – owner to confirm]</span>
+          </p>
+        </div>
+
+        <div>
+          <h3>Concept Switcher &amp; Map</h3>
+          <ul class="footer-links">
+            <li><a href="../index.html">Concept A — 90s Matchday Fanzine &amp; Swing-Tags</a></li>
+            <li><a href="../b/index.html">Concept B — Floodlit Tunnel &amp; Drop Lookbook</a></li>
+            <li><a href="index.html" aria-current="page">Concept C — Collector's Marketplace App &amp; Stepper</a></li>
+            <li>
+              <a
+                href="https://www.google.com/maps/search/?api=1&amp;query=Ultra+Football+Shirts+2+Danby+Wynd+Yarm+TS15+9SF"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Directions on Google Maps &nearr;
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-legal">
+        <p><strong>Concept Disclaimer:</strong> Concept design by Mark Aszkenasy – not the official website of Ultra Football Shirts. All sample listings, prices, measurements, hours and grading policies in brackets are placeholders awaiting owner confirmation.</p>
+        <p><strong>Illustrative Image Credit:</strong> Photographs (<code>hero.jpg</code>, <code>feature.jpg</code>) are AI-generated illustrative images created for concept demonstration ("Illustrative image"); shirt catalog graphics are original non-branded geometric SVG illustrations.</p>
+        <p><strong>Design by Mark Aszkenasy</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Bar -->
+  <nav class="mobile-market-dock" aria-label="Quick actions">
+    <a class="m-dock-btn m-dock-btn--primary" href="#rail">Rail</a>
+    <a class="m-dock-btn" href="#shirt-finder">3-Step Hold</a>
+    <a
+      class="m-dock-btn"
+      href="https://www.google.com/maps/search/?api=1&amp;query=Ultra+Football+Shirts+2+Danby+Wynd+Yarm+TS15+9SF"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Maps
+    </a>
+  </nav>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
