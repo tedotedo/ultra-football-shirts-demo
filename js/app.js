@@ -336,6 +336,96 @@
     return out;
   }
 
+  function stitchNoteForScore(score) {
+    var n = Number(score) || 9;
+    if (n >= 10) return 'Stitch check: Unworn loom weave \u00B7 Original tags \u00B7 Crisp collar';
+    if (n === 9) return 'Stitch check: Firm collar rib \u00B7 Sharp crest & flock \u00B7 Clean hem';
+    if (n === 8) return 'Stitch check: Sound seams \u00B7 Light wash-tag age \u00B7 Matchday clean';
+    return 'Stitch check: Intact seams \u00B7 Honest terrace patina';
+  }
+
+  var microToastTimer = null;
+  function showMicroToast(msg) {
+    var toast = document.getElementById('ufs-micro-toast');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.hidden = false;
+    if (microToastTimer) clearTimeout(microToastTimer);
+    microToastTimer = setTimeout(function () {
+      toast.hidden = true;
+    }, 2800);
+  }
+
+  function makeRefCode() {
+    var n = Math.floor(1000 + Math.random() * 9000);
+    return 'UFS-2026-' + n;
+  }
+
+  function copyPlainText(txt, btnEl) {
+    function markCopied() {
+      if (btnEl) {
+        var orig = btnEl.textContent;
+        btnEl.textContent = 'Copied \u2713';
+        setTimeout(function () {
+          btnEl.textContent = orig;
+        }, 1800);
+      }
+      showMicroToast('Enquiry ticket summary copied to clipboard.');
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(markCopied).catch(function () {
+        fallbackCopy(txt);
+        markCopied();
+      });
+    } else {
+      fallbackCopy(txt);
+      markCopied();
+    }
+  }
+
+  function fallbackCopy(txt) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = txt;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    } catch (_) {}
+  }
+
+  function buildOwnerReceiptHtml(data) {
+    var ref = data.ref || makeRefCode();
+    var plainSummary =
+      'Ultra Football Shirts — Enquiry Ticket (' + ref + ')\n' +
+      'Collector: ' + data.name + '\n' +
+      'Contact: ' + data.contact + '\n' +
+      'Request / Handover: ' + data.requestType + '\n' +
+      'Shirt & Size Details: ' + data.details;
+
+    return (
+      '<p class="demo-feedback__verbatim">' + escapeHtml(EXACT_DEMO_MSG) + '</p>' +
+      '<div class="owner-receipt" data-plain-summary="' + escapeHtml(plainSummary) + '">' +
+        '<div class="owner-receipt__head">' +
+          '<span>What Ultra Football Shirts Receives</span>' +
+          '<span>REF // ' + escapeHtml(ref) + '</span>' +
+        '</div>' +
+        '<dl class="owner-receipt__dl">' +
+          '<div class="owner-receipt__row"><dt>Collector</dt><dd>' + escapeHtml(data.name) + '</dd></div>' +
+          '<div class="owner-receipt__row"><dt>Contact</dt><dd>' + escapeHtml(data.contact) + '</dd></div>' +
+          '<div class="owner-receipt__row"><dt>Request Type</dt><dd>' + escapeHtml(data.requestType) + '</dd></div>' +
+          '<div class="owner-receipt__row"><dt>Shirt Details</dt><dd>' + escapeHtml(data.details) + '</dd></div>' +
+        '</dl>' +
+        '<div class="owner-receipt__actions">' +
+          '<button type="button" class="owner-receipt__btn" data-copy-receipt>Copy Summary</button>' +
+          '<button type="button" class="owner-receipt__btn owner-receipt__btn--secondary" data-reset-receipt="' + escapeHtml(data.resetTarget || '') + '">Reset Demo</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
   /* ------------------------------------------------------------------------
      1. Accessible Mobile Navigation (All Pages)
      ------------------------------------------------------------------------ */
@@ -549,6 +639,7 @@
                     '<div class="cond-meter__segments" aria-hidden="true">' +
                       renderConditionSegments(scoreNum) +
                     '</div>' +
+                    '<div class="cond-meter__stitch">' + escapeHtml(stitchNoteForScore(scoreNum)) + '</div>' +
                   '</div>' +
 
                   '<div class="swing-tag__price-row">' +
@@ -599,11 +690,73 @@
         filters[grp] = val;
         syncFilterButtons();
         renderGrid();
+        showMicroToast('Locker filter: ' + grp.toUpperCase() + ' \u2192 ' + val);
       });
     }
 
     if (resetFiltersBtn) {
-      resetFiltersBtn.addEventListener('click', resetAllFilters);
+      resetFiltersBtn.addEventListener('click', function () {
+        resetAllFilters();
+        var presetPills = document.querySelectorAll('[data-collector-preset]');
+        for (var p = 0; p < presetPills.length; p++) presetPills[p].classList.remove('is-active');
+        showMicroToast('Locker filters reset — showing all 2 Danby Wynd swing-tags.');
+      });
+    }
+
+    /* 1-Tap Collector Presets on index.html */
+    var presetBtns = document.querySelectorAll('[data-collector-preset]');
+    for (var pb = 0; pb < presetBtns.length; pb++) {
+      presetBtns[pb].addEventListener('click', function () {
+        var key = this.getAttribute('data-collector-preset');
+        for (var x = 0; x < presetBtns.length; x++) {
+          presetBtns[x].classList.toggle('is-active', presetBtns[x] === this);
+        }
+
+        if (key === 'hold-90s') {
+          filters.era = '1990s';
+          filters.size = 'All';
+          filters.availability = 'Available';
+          syncFilterButtons();
+          renderGrid();
+          var stock = loadStock();
+          var top90s = null;
+          for (var i = 0; i < stock.length; i++) {
+            if (stock[i].era === '1990s' && stock[i].status === 'Available') {
+              top90s = stock[i];
+              break;
+            }
+          }
+          var sumStr = top90s
+            ? top90s.id + ' \u00B7 ' + top90s.title + ' — Size ' + top90s.size + ' (1990s)'
+            : '1990s Rail Shirt Hold — 2 Danby Wynd, Yarm';
+          window.__openUfsReserveModal && window.__openUfsReserveModal(
+            sumStr,
+            'collect',
+            'Hold at 2 Danby Wynd counter to inspect woven collar, jacquard weave and pit-to-pit fit.',
+            this
+          );
+          showMicroToast('Preset loaded: Top 1990s rail shirt ready for Danby Wynd hold.');
+        } else if (key === 'serie-a-grail') {
+          filters.era = '1990s';
+          syncFilterButtons();
+          renderGrid();
+          window.__openUfsReserveModal && window.__openUfsReserveModal(
+            '90s Serie A Grail Search — Size M/L (Collector Wantlist)',
+            'collect',
+            'Hunting an original mid-1990s Serie A woven jacquard classic in Size M or L (9/10 Mint+); please message if one lands at 2 Danby Wynd.',
+            this
+          );
+          showMicroToast('Preset loaded: 90s Serie A Grail Search wantlist ticket.');
+        } else if (key === 'sell-collection') {
+          window.__openUfsReserveModal && window.__openUfsReserveModal(
+            'Counter Collection Valuation — Original 80s/90s Shirts (2 Danby Wynd)',
+            'collect',
+            'Looking to bring an original 1980s/90s shirt collection (authentic woven neck & wash tags, zero repros) into 2 Danby Wynd to sell or trade.',
+            this
+          );
+          showMicroToast('Preset loaded: Sell / Trade a Classic Collection at 2 Danby Wynd.');
+        }
+      });
     }
 
     renderGrid();
@@ -624,14 +777,23 @@
     var feedback = document.getElementById('reserve-feedback');
     var lastTrigger = null;
 
-    function openModal(prefillText, triggerEl) {
+    var methodSelect = document.getElementById('reserve-method');
+    var notesInput = document.getElementById('reserve-notes');
+
+    function openModal(prefillText, triggerEl, prefillMethod, prefillNotes) {
       lastTrigger = triggerEl || document.activeElement;
       if (shirtInput) {
         shirtInput.value = prefillText || 'General Click & Collect / Rail Enquiry (2 Danby Wynd, Yarm)';
       }
+      if (methodSelect && prefillMethod) {
+        methodSelect.value = prefillMethod;
+      }
+      if (notesInput && typeof prefillNotes === 'string') {
+        notesInput.value = prefillNotes;
+      }
       if (feedback) {
         feedback.hidden = true;
-        feedback.textContent = '';
+        feedback.innerHTML = '';
       }
       backdrop.hidden = false;
       document.body.style.overflow = 'hidden';
@@ -641,6 +803,10 @@
         closeBtn.focus();
       }
     }
+
+    window.__openUfsReserveModal = function (prefillText, prefillMethod, prefillNotes, triggerEl) {
+      openModal(prefillText, triggerEl, prefillMethod, prefillNotes);
+    };
 
     function closeModal() {
       if (backdrop.hidden) return;
@@ -697,11 +863,26 @@
     if (form) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
+        var collectorName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : 'Collector';
+        var contactVal = (document.getElementById('reserve-contact') && document.getElementById('reserve-contact').value.trim()) || 'Provided on ticket';
+        var methodLabel = methodSelect && methodSelect.options[methodSelect.selectedIndex]
+          ? methodSelect.options[methodSelect.selectedIndex].text
+          : 'Click & Collect — 2 Danby Wynd, Yarm';
+        var shirtVal = (shirtInput && shirtInput.value.trim()) || '2 Danby Wynd Rail Shirt';
+        var noteVal = (notesInput && notesInput.value.trim()) ? ' — Note: ' + notesInput.value.trim() : '';
+
         if (feedback) {
-          feedback.textContent = EXACT_DEMO_MSG;
+          feedback.innerHTML = buildOwnerReceiptHtml({
+            name: collectorName,
+            contact: contactVal,
+            requestType: methodLabel,
+            details: shirtVal + noteVal,
+            resetTarget: 'reserve'
+          });
           feedback.hidden = false;
           feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
+        showMicroToast('Demo Click & Collect ticket generated.');
       });
     }
   }
@@ -710,8 +891,9 @@
      4. Sell / Trade & Grail Finder Two-Ticket Forms (sell-find.html)
      ------------------------------------------------------------------------ */
   function initFinderForms() {
-    /* Support any client-side dummy forms on sell-find.html */
     var enquirySelect = document.getElementById('enquiry-type');
+    var shirtsTextarea = document.getElementById('enquiry-shirts');
+    var handoverSelect = document.getElementById('enquiry-handover');
     var ticketButtons = document.querySelectorAll('[data-select-enquiry]');
     for (var t = 0; t < ticketButtons.length; t++) {
       ticketButtons[t].addEventListener('click', function () {
@@ -729,6 +911,41 @@
             nameField.focus();
           }, 220);
         }
+        showMicroToast('Ticket stub selected — complete your details below.');
+      });
+    }
+
+    var finderPresets = document.querySelectorAll('[data-finder-preset]');
+    for (var fp = 0; fp < finderPresets.length; fp++) {
+      finderPresets[fp].addEventListener('click', function () {
+        var key = this.getAttribute('data-finder-preset');
+        for (var i = 0; i < finderPresets.length; i++) {
+          finderPresets[i].classList.toggle('is-active', finderPresets[i] === this);
+        }
+        if (key === 'serie-a-grail') {
+          if (enquirySelect) enquirySelect.value = 'grail-finder';
+          if (handoverSelect) handoverSelect.value = 'message-first';
+          if (shirtsTextarea) {
+            shirtsTextarea.value = '90s Serie A Grail Search: hunting an original mid-1990s Serie A woven jacquard shirt in Size M or L (9/10 Mint+ with authentic collar tag).';
+          }
+          showMicroToast('Preset filled: 90s Serie A Grail Search.');
+        } else if (key === 'sell-collection') {
+          if (enquirySelect) enquirySelect.value = 'sell-trade';
+          if (handoverSelect) handoverSelect.value = 'in-shop';
+          if (shirtsTextarea) {
+            shirtsTextarea.value = 'Selling / trading a classic collection: 6 original 1980s & 1990s shirts (Sizes M–XL, all original neck & wash-code tags, zero reproductions) for 2 Danby Wynd counter check.';
+          }
+          showMicroToast('Preset filled: Sell a Classic Collection.');
+        } else if (key === 'hold-90s') {
+          if (enquirySelect) enquirySelect.value = 'general';
+          if (handoverSelect) handoverSelect.value = 'in-shop';
+          if (shirtsTextarea) {
+            shirtsTextarea.value = 'Hold Top 90s Shirt for Danby Wynd: UFS-01 · 1995–96 Teesside Crimson Chest-Band Home Style (Size L, 9/10 Mint) — requesting counter inspection hold.';
+          }
+          showMicroToast('Preset filled: Hold Top 90s Shirt for Danby Wynd.');
+        }
+        var nameField = document.getElementById('enquiry-name');
+        if (nameField) nameField.focus();
       });
     }
 
@@ -737,9 +954,26 @@
     if (form && feedback) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        feedback.textContent = EXACT_DEMO_MSG;
+        var n = (document.getElementById('enquiry-name') && document.getElementById('enquiry-name').value.trim()) || 'Collector';
+        var c = (document.getElementById('enquiry-contact') && document.getElementById('enquiry-contact').value.trim()) || 'Provided on ticket';
+        var typeTxt = enquirySelect && enquirySelect.options[enquirySelect.selectedIndex]
+          ? enquirySelect.options[enquirySelect.selectedIndex].text
+          : 'Counter Ticket';
+        var handTxt = handoverSelect && handoverSelect.options[handoverSelect.selectedIndex]
+          ? handoverSelect.options[handoverSelect.selectedIndex].text
+          : '2 Danby Wynd, Yarm';
+        var shirtsTxt = (shirtsTextarea && shirtsTextarea.value.trim()) || 'Classic shirt enquiry';
+
+        feedback.innerHTML = buildOwnerReceiptHtml({
+          name: n,
+          contact: c,
+          requestType: typeTxt + ' \u00B7 ' + handTxt,
+          details: shirtsTxt,
+          resetTarget: 'finder'
+        });
         feedback.hidden = false;
         feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        showMicroToast('Counter enquiry ticket generated.');
       });
     }
   }
@@ -855,6 +1089,7 @@
         'RAIL PAD SYNC // "' + targetTitle + '" marked ' + newStatus.toUpperCase() +
         '. Switch to Stock Room to inspect the updated swing-tag!'
       );
+      showMicroToast(id + ' marked ' + newStatus.toUpperCase());
     });
 
     if (addForm) {
@@ -923,12 +1158,143 @@
     renderAdminList();
   }
 
+  /* ------------------------------------------------------------------------
+     6. Native <dialog> Editorial Photo Lightbox + Receipt Actions + Dock Clearance
+     ------------------------------------------------------------------------ */
+  function initLightboxAndDock() {
+    /* Delegated Copy Summary & Reset Demo buttons inside receipt tickets */
+    document.addEventListener('click', function (e) {
+      var copyBtn = e.target.closest('[data-copy-receipt]');
+      if (copyBtn) {
+        var box = copyBtn.closest('[data-plain-summary]');
+        var txt = box ? box.getAttribute('data-plain-summary') : '';
+        if (txt) copyPlainText(txt, copyBtn);
+        return;
+      }
+
+      var resetBtn = e.target.closest('[data-reset-receipt]');
+      if (resetBtn) {
+        var which = resetBtn.getAttribute('data-reset-receipt');
+        if (which === 'reserve') {
+          var rf = document.getElementById('reserve-form');
+          var rfb = document.getElementById('reserve-feedback');
+          if (rf) rf.reset();
+          if (rfb) { rfb.hidden = true; rfb.innerHTML = ''; }
+        } else if (which === 'finder') {
+          var ff = document.getElementById('shirt-finder-form');
+          var ffb = document.getElementById('finder-feedback');
+          if (ff) ff.reset();
+          if (ffb) { ffb.hidden = true; ffb.innerHTML = ''; }
+          var pBtns = document.querySelectorAll('[data-finder-preset]');
+          for (var i = 0; i < pBtns.length; i++) pBtns[i].classList.remove('is-active');
+        }
+        showMicroToast('Demo form reset and ready for another test.');
+      }
+    });
+
+    /* Native <dialog> Photo Lightbox */
+    var dlg = document.getElementById('ufs-lightbox');
+    if (dlg) {
+      var dlgImg = document.getElementById('ufs-lightbox-img');
+      var dlgCap = document.getElementById('ufs-lightbox-caption');
+      var lastPhotoTrigger = null;
+
+      function openLightbox(triggerEl) {
+        var src = triggerEl.getAttribute('data-lightbox-src');
+        if (!src) return;
+        lastPhotoTrigger = triggerEl;
+        if (dlgImg) {
+          dlgImg.src = src;
+          dlgImg.alt = triggerEl.getAttribute('data-lightbox-alt') || 'Illustrative concept image';
+        }
+        if (dlgCap) {
+          dlgCap.textContent = triggerEl.getAttribute('data-lightbox-caption') || '';
+        }
+        if (typeof dlg.showModal === 'function') {
+          if (!dlg.open) dlg.showModal();
+        } else {
+          dlg.setAttribute('open', '');
+        }
+      }
+
+      function closeLightbox() {
+        if (dlg.open && typeof dlg.close === 'function') {
+          dlg.close();
+        } else {
+          dlg.removeAttribute('open');
+        }
+        if (lastPhotoTrigger && typeof lastPhotoTrigger.focus === 'function') {
+          lastPhotoTrigger.focus();
+        }
+      }
+
+      document.addEventListener('click', function (e) {
+        var trig = e.target.closest('.is-lightbox-trigger');
+        if (trig) {
+          e.preventDefault();
+          openLightbox(trig);
+          return;
+        }
+        if (e.target.closest('[data-lightbox-close]')) {
+          closeLightbox();
+          return;
+        }
+        var ctaBtn = e.target.closest('[data-lightbox-cta]');
+        if (ctaBtn) {
+          var sum = ctaBtn.getAttribute('data-shirt-summary') || '';
+          closeLightbox();
+          if (window.__openUfsReserveModal) {
+            window.__openUfsReserveModal(sum, 'collect', '', ctaBtn);
+          }
+          return;
+        }
+        var jumpLink = e.target.closest('[data-lightbox-jump]');
+        if (jumpLink) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          var trig = document.activeElement && document.activeElement.classList &&
+            document.activeElement.classList.contains('is-lightbox-trigger')
+            ? document.activeElement
+            : null;
+          if (trig) {
+            e.preventDefault();
+            openLightbox(trig);
+          }
+        }
+      });
+
+      dlg.addEventListener('click', function (e) {
+        if (e.target === dlg) closeLightbox();
+      });
+    }
+
+    /* Frosted Mobile Dock Auto-Clearance over Forms & Footer */
+    var dock = document.querySelector('.mobile-action-bar');
+    if (dock && 'IntersectionObserver' in window) {
+      var watchEls = document.querySelectorAll('#shirt-finder-form, #add-shirt-form, .site-footer');
+      var visibleSet = new Set();
+      var dockObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) visibleSet.add(entry.target);
+          else visibleSet.delete(entry.target);
+        });
+        dock.classList.toggle('is-cleared', visibleSet.size > 0);
+      }, { threshold: 0.08 });
+      watchEls.forEach(function (el) { dockObs.observe(el); });
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initMobileNav();
     initStockRoom();
     initReserveModal();
     initFinderForms();
     initAdminDemo();
+    initLightboxAndDock();
   });
 })();
 

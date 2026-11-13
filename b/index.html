@@ -34,6 +34,7 @@
 
   <!-- Floodlit Tunnel Header -->
   <header class="tunnel-header">
+    <div class="b-scroll-progress" id="b-scroll-progress" aria-hidden="true"></div>
     <div class="wrap tunnel-header__inner">
       <a class="tunnel-brand" href="#top">
         <img class="tunnel-brand__logo" src="../images/logo-mark.svg" width="34" height="34" alt="">
@@ -73,7 +74,15 @@
         </h1>
 
         <div class="tunnel-hero__stage">
-          <figure class="tunnel-hero__media">
+          <figure
+            class="tunnel-hero__media is-b-lightbox"
+            tabindex="0"
+            role="button"
+            aria-label="Open full-frame illustrative kit room photograph"
+            data-lightbox-src="../images/hero.jpg"
+            data-lightbox-alt="Rails of colourful retro and classic football shirts hanging inside an independent football kit room"
+            data-lightbox-caption="2 Danby Wynd Tunnel Drop Archive — Concept kit room visual; actual 2 Danby Wynd rail photography to be supplied by Ultra Football Shirts."
+          >
             <div class="tunnel-hero__img-wrap">
               <img
                 src="../images/hero.jpg"
@@ -83,10 +92,11 @@
                 fetchpriority="high"
               >
               <span class="illus-badge">Illustrative image</span>
+              <span class="b-zoom-pill" aria-hidden="true">&#128269; Inspect</span>
             </div>
             <figcaption class="tunnel-hero__caption">
               <span>Concept kit room visual — actual 2 Danby Wynd rail photography to be supplied by Ultra Football Shirts.</span>
-              <span>AI-generated concept photo</span>
+              <span>Tap photo to enlarge</span>
             </figcaption>
           </figure>
 
@@ -158,8 +168,19 @@
           </div>
 
           <div class="rail-arrows" aria-label="Scroll lookbook rail">
+            <span class="b-snap-counter" id="b-snap-counter" aria-live="polite">01 / 08</span>
             <button type="button" class="arrow-btn" data-rail-scroll="-1" aria-label="Scroll lookbook left">&larr; Prev</button>
             <button type="button" class="arrow-btn" data-rail-scroll="1" aria-label="Scroll lookbook right">Next &rarr;</button>
+          </div>
+        </div>
+
+        <!-- 1-Tap Collector Quick Presets -->
+        <div class="b-preset-bar" role="group" aria-label="1-tap collector presets">
+          <span class="b-preset-bar__label">1-TAP COLLECTOR PRESETS:</span>
+          <div class="b-preset-chips">
+            <button type="button" class="b-preset-chip" data-b-preset="serie-a-grail">&#9917; 90s Serie A Grail Search</button>
+            <button type="button" class="b-preset-chip" data-b-preset="sell-collection">&#127991;&#65039; Sell a Classic Collection</button>
+            <button type="button" class="b-preset-chip" data-b-preset="hold-90s">&#128717;&#65039; Hold Top 90s Shirt for Danby Wynd</button>
           </div>
         </div>
 
@@ -201,6 +222,7 @@
             <p>Enable JavaScript to browse the interactive drop lookbook and test the 1-tap owner rail toggle.</p>
           </noscript>
         </div>
+        <div class="b-snap-dots" id="b-snap-dots" role="tablist" aria-label="Lookbook card position"></div>
       </div>
     </section>
 
@@ -227,8 +249,16 @@
     <!-- Sell / Trade & Grail Finder + Feature Flat-Lay -->
     <section class="section" id="sell-trade" aria-labelledby="sell-heading">
       <div class="wrap sell-split">
-        <div>
-          <figure class="feature-card">
+        <div class="b-editorial-stack">
+          <figure
+            class="feature-card is-b-lightbox"
+            tabindex="0"
+            role="button"
+            aria-label="Open full-frame classic 1990s football shirts flat-lay photograph"
+            data-lightbox-src="../images/feature.jpg"
+            data-lightbox-alt="Folded classic 1990s football shirts arranged in a flat-lay showing woven collars and bold geometric patterns"
+            data-lightbox-caption="Counter Flat-Lay Check — Inspect inner wash-codes, flock prints and woven collar tags face-to-face at 2 Danby Wynd."
+          >
             <div class="feature-card__img">
               <img
                 src="../images/feature.jpg"
@@ -238,6 +268,7 @@
                 loading="lazy"
               >
               <span class="illus-badge">Illustrative image</span>
+              <span class="b-zoom-pill" aria-hidden="true">&#128269; Inspect</span>
             </div>
             <figcaption class="feature-card__cap">
               <h3>Sell, Trade or Hunt a Grail at 2 Danby Wynd</h3>
@@ -258,14 +289,56 @@
               </a>
             </figcaption>
           </figure>
+
+          <div class="b-detail-pair">
+            <figure
+              class="b-detail-card is-b-lightbox"
+              tabindex="0"
+              role="button"
+              aria-label="Open full-frame macro 1990s woven jacquard knit and collar textile photograph"
+              data-lightbox-src="../images/detail-1.jpg"
+              data-lightbox-alt="Macro close-up of 1990s woven jacquard geometric football shirt knit and stitched collar textile"
+              data-lightbox-caption="Macro 1990s Woven Jacquard &amp; Collar Textile — Checked stitch-by-stitch before joining the 2 Danby Wynd rail."
+            >
+              <div class="b-detail-card__img">
+                <img src="../images/detail-1.jpg" width="1200" height="896" alt="Macro close-up of 1990s woven jacquard geometric football shirt knit and stitched collar textile" loading="lazy">
+                <span class="illus-badge">Illustrative image</span>
+              </div>
+              <figcaption class="b-detail-card__cap">Macro 90s woven jacquard &amp; collar weave</figcaption>
+            </figure>
+
+            <figure
+              class="b-detail-card is-b-lightbox"
+              tabindex="0"
+              role="button"
+              aria-label="Open full-frame folded 1980s and 1990s collector jerseys on timber boutique table photograph"
+              data-lightbox-src="../images/detail-2.jpg"
+              data-lightbox-alt="Neatly folded colourful 1980s and 1990s collector football jerseys stacked on a timber boutique table"
+              data-lightbox-caption="Boutique Timber Table Stack — Neatly folded 1980s &amp; 1990s collector jerseys ready for counter inspection."
+            >
+              <div class="b-detail-card__img">
+                <img src="../images/detail-2.jpg" width="1200" height="896" alt="Neatly folded colourful 1980s and 1990s collector football jerseys stacked on a timber boutique table" loading="lazy">
+                <span class="illus-badge">Illustrative image</span>
+              </div>
+              <figcaption class="b-detail-card__cap">Folded 80s/90s collector stack on boutique table</figcaption>
+            </figure>
+          </div>
         </div>
 
         <div class="counter-form-card">
           <span class="eyebrow">COUNTER DESK // SELL, TRADE OR GRAIL REQUEST</span>
           <h2 id="sell-heading">Send a Shirt Finder or Trade Note</h2>
-          <p class="section-sub" style="margin-bottom: 1.1rem;">
-            Prefer to message before walking down Danby Wynd? Test the client-side enquiry ticket below:
+          <p class="section-sub" style="margin-bottom: 0.9rem;">
+            Prefer to message before walking down Danby Wynd? Tap a collector preset or test the client-side enquiry ticket below:
           </p>
+
+          <div class="b-preset-bar b-preset-bar--compact" role="group" aria-label="Quick-fill counter presets">
+            <div class="b-preset-chips">
+              <button type="button" class="b-preset-chip" data-b-preset="serie-a-grail">&#9917; 90s Serie A Grail Search</button>
+              <button type="button" class="b-preset-chip" data-b-preset="sell-collection">&#127991;&#65039; Sell a Classic Collection</button>
+              <button type="button" class="b-preset-chip" data-b-preset="hold-90s">&#128717;&#65039; Hold Top 90s Shirt for Danby Wynd</button>
+            </div>
+          </div>
 
           <form id="b-counter-form" class="tunnel-form" novalidate>
             <div class="t-field">
@@ -410,11 +483,37 @@
 
       <div class="footer-legal">
         <p><strong>Concept Disclaimer:</strong> Concept design by Mark Aszkenasy – not the official website of Ultra Football Shirts. All sample listings, prices, pit-to-pit measurements, hours and grading policies in brackets are placeholders awaiting owner confirmation.</p>
-        <p><strong>Illustrative Image Credit:</strong> Photographs (<code>hero.jpg</code>, <code>feature.jpg</code>) are AI-generated illustrative images created for concept demonstration ("Illustrative image"); shirt lookbook graphics are original non-branded geometric SVG illustrations.</p>
+        <p><strong>Illustrative Image Credit:</strong> Photographs (<code>hero.jpg</code>, <code>feature.jpg</code>, <code>detail-1.jpg</code>, <code>detail-2.jpg</code>) are AI-generated illustrative images created for concept demonstration ("Illustrative image"); shirt lookbook graphics are original non-branded geometric SVG illustrations.</p>
         <p><strong>Design by Mark Aszkenasy</strong></p>
       </div>
     </div>
   </footer>
+
+  <!-- Native Accessible Editorial Photo Lightbox -->
+  <dialog id="b-photo-lightbox" class="b-lightbox" aria-label="Editorial photo preview">
+    <div class="b-lightbox__frame">
+      <div class="b-lightbox__head">
+        <span class="volt-pill">Illustrative image</span>
+        <button type="button" class="sheet-close" data-b-lightbox-close aria-label="Close photo preview">Close &#10005;</button>
+      </div>
+      <div class="b-lightbox__media">
+        <img id="b-lightbox-img" src="../images/hero.jpg" alt="" width="1200" height="896">
+      </div>
+      <div class="b-lightbox__foot">
+        <p id="b-lightbox-caption" class="b-lightbox__caption"></p>
+        <button
+          type="button"
+          class="btn btn--volt b-lightbox__cta"
+          data-b-lightbox-reserve="Click &amp; Collect / Rail Inspection Enquiry (2 Danby Wynd, Yarm)"
+        >
+          Reserve / Enquire at 2 Danby Wynd &rarr;
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Non-blocking Micro-Toast -->
+  <div id="b-micro-toast" class="b-micro-toast" role="status" aria-live="polite" hidden></div>
 
   <!-- Mobile Bottom Dock -->
   <nav class="mobile-tunnel-dock" aria-label="Quick mobile actions">

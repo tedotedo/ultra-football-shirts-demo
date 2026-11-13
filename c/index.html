@@ -34,6 +34,7 @@
 
   <!-- Sticky Gallery Header + Segmented Top Tabs -->
   <header class="gallery-header">
+    <div class="c-scroll-progress" id="c-scroll-progress" aria-hidden="true"></div>
     <div class="wrap gallery-header__top">
       <a class="market-brand" href="#top">
         <img class="market-brand__logo" src="../images/logo-mark.svg" width="32" height="32" alt="">
@@ -76,7 +77,15 @@
             </div>
           </div>
 
-          <figure class="gallery-hero-photo">
+          <figure
+            class="gallery-hero-photo is-c-lightbox"
+            tabindex="0"
+            role="button"
+            aria-label="Open full-frame illustrative kit room photograph"
+            data-lightbox-src="../images/hero.jpg"
+            data-lightbox-alt="Rails of colourful retro and classic football shirts hanging inside an independent football kit room"
+            data-lightbox-caption="2 Danby Wynd Collector Archive — Concept rail visual; real 2 Danby Wynd photography to be supplied by Ultra Football Shirts."
+          >
             <div class="gallery-hero-photo__frame">
               <img
                 src="../images/hero.jpg"
@@ -86,10 +95,11 @@
                 fetchpriority="high"
               >
               <span class="illus-tag">Illustrative image</span>
+              <span class="c-zoom-badge" aria-hidden="true">&#128269; Tap to enlarge</span>
             </div>
             <figcaption class="gallery-hero-photo__cap">
               <span>Concept rail visual — real 2 Danby Wynd photography to be supplied by owner.</span>
-              <span>AI concept photo</span>
+              <span>Tap photo to inspect</span>
             </figcaption>
           </figure>
         </div>
@@ -164,6 +174,16 @@
           <p class="live-tally" id="catalog-live-count" aria-live="polite">8 of 8 shirts &middot; 7 Available</p>
         </div>
 
+        <!-- 1-Tap Collector Presets -->
+        <div class="c-preset-bar" role="group" aria-label="1-tap collector presets">
+          <span class="c-preset-bar__label">1-TAP COLLECTOR PRESETS:</span>
+          <div class="c-preset-row">
+            <button type="button" class="c-preset-chip" data-c-preset="serie-a-grail">&#9917; 90s Serie A Grail Search</button>
+            <button type="button" class="c-preset-chip" data-c-preset="sell-collection">&#127991;&#65039; Sell a Classic Collection</button>
+            <button type="button" class="c-preset-chip" data-c-preset="hold-90s">&#128717;&#65039; Hold Top 90s Shirt for Danby Wynd</button>
+          </div>
+        </div>
+
         <!-- Era & Size Filter Chips -->
         <div class="catalog-filters" role="region" aria-label="Filter catalog shirts">
           <div class="chip-row" role="group" aria-label="Filter by decade">
@@ -207,6 +227,15 @@
         </div>
 
         <div class="market-stepper">
+          <div class="c-preset-bar c-preset-bar--stepper" role="group" aria-label="Quick-fill stepper presets">
+            <span class="c-preset-bar__label">QUICK-FILL STEPPER:</span>
+            <div class="c-preset-row">
+              <button type="button" class="c-preset-chip" data-c-preset="serie-a-grail">&#9917; 90s Serie A Grail Search</button>
+              <button type="button" class="c-preset-chip" data-c-preset="sell-collection">&#127991;&#65039; Sell a Classic Collection</button>
+              <button type="button" class="c-preset-chip" data-c-preset="hold-90s">&#128717;&#65039; Hold Top 90s Shirt for Danby Wynd</button>
+            </div>
+          </div>
+
           <!-- Step Indicator -->
           <div class="m-step-header">
             <div class="m-step-pills" role="list" aria-label="Request steps">
@@ -349,44 +378,120 @@
 
           <div class="m-success" id="m-success" tabindex="-1" role="status" aria-live="polite" hidden>
             <p class="m-success__exact">Demo only – in the live site this would go straight to Ultra Football Shirts.</p>
-            <p class="m-success__meta" id="m-success-meta"></p>
-            <button type="button" class="btn btn--outline" id="m-reset-stepper">Start another request</button>
+            <div id="m-owner-ticket"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Authenticity & Condition Grading Guide + Feature Photo -->
+    <!-- Authenticity & Condition Grading Guide + 3-Photo Editorial Gallery -->
     <section class="section" aria-labelledby="grading-heading">
       <div class="wrap auth-split">
-        <figure class="auth-photo">
-          <div class="auth-photo__frame">
-            <img
-              src="../images/feature.jpg"
-              width="1200"
-              height="896"
-              alt="Folded classic 1990s football shirts arranged in a flat-lay showing woven collars and bold geometric patterns"
-              loading="lazy"
+        <div class="c-photo-triptych">
+          <figure
+            class="auth-photo is-c-lightbox"
+            tabindex="0"
+            role="button"
+            aria-label="Open full-frame classic 1990s football shirts flat-lay photograph"
+            data-lightbox-src="../images/feature.jpg"
+            data-lightbox-alt="Folded classic 1990s football shirts arranged in a flat-lay showing woven collars and bold geometric patterns"
+            data-lightbox-caption="Checked Stitch-by-Stitch in Yarm — Inner wash-codes, woven collars and geometric patterns inspected at 2 Danby Wynd."
+          >
+            <div class="auth-photo__frame">
+              <img
+                src="../images/feature.jpg"
+                width="1200"
+                height="896"
+                alt="Folded classic 1990s football shirts arranged in a flat-lay showing woven collars and bold geometric patterns"
+                loading="lazy"
+              >
+              <span class="illus-tag">Illustrative image</span>
+              <span class="c-zoom-badge" aria-hidden="true">&#128269; Inspect</span>
+            </div>
+            <figcaption class="auth-photo__cap">
+              <span>Checked stitch-by-stitch in Yarm — actual photography to be supplied by Ultra Football Shirts.</span>
+            </figcaption>
+          </figure>
+
+          <div class="c-photo-subpair">
+            <figure
+              class="auth-subphoto is-c-lightbox"
+              tabindex="0"
+              role="button"
+              aria-label="Open full-frame macro 1990s woven jacquard knit and collar textile photograph"
+              data-lightbox-src="../images/detail-1.jpg"
+              data-lightbox-alt="Macro close-up of 1990s woven jacquard geometric football shirt knit and stitched collar textile"
+              data-lightbox-caption="Macro 1990s Woven Jacquard &amp; Collar Textile — Inspect loom density, collar rib and stitching."
             >
-            <span class="illus-tag">Illustrative image</span>
+              <div class="auth-subphoto__frame">
+                <img src="../images/detail-1.jpg" width="1200" height="896" alt="Macro close-up of 1990s woven jacquard geometric football shirt knit and stitched collar textile" loading="lazy">
+                <span class="illus-tag">Illustrative image</span>
+              </div>
+              <figcaption class="auth-subphoto__cap">Macro 90s jacquard &amp; collar knit</figcaption>
+            </figure>
+
+            <figure
+              class="auth-subphoto is-c-lightbox"
+              tabindex="0"
+              role="button"
+              aria-label="Open full-frame folded 1980s and 1990s collector jerseys on timber boutique table photograph"
+              data-lightbox-src="../images/detail-2.jpg"
+              data-lightbox-alt="Neatly folded colourful 1980s and 1990s collector football jerseys stacked on a timber boutique table"
+              data-lightbox-caption="Boutique Timber Table Stack — Folded 1980s &amp; 1990s collector jerseys ready for Danby Wynd inspection."
+            >
+              <div class="auth-subphoto__frame">
+                <img src="../images/detail-2.jpg" width="1200" height="896" alt="Neatly folded colourful 1980s and 1990s collector football jerseys stacked on a timber boutique table" loading="lazy">
+                <span class="illus-tag">Illustrative image</span>
+              </div>
+              <figcaption class="auth-subphoto__cap">Folded 80s/90s boutique stack</figcaption>
+            </figure>
           </div>
-          <figcaption class="auth-photo__cap">
-            <span>Checked stitch-by-stitch in Yarm — actual photography to be supplied by Ultra Football Shirts.</span>
-          </figcaption>
-        </figure>
+        </div>
 
         <div class="grading-box">
           <span class="emerald-kicker">COLLECTOR CONFIDENCE</span>
           <h2 id="grading-heading">Condition Grading &amp; Danby Wynd Visit</h2>
           <p class="section-sub" style="margin-bottom: 1rem;">
-            Every vintage piece carries honest condition notes (<span class="ph">[Grading policy – owner to confirm]</span>) and pit-to-pit measurements (<span class="ph">[Sizing format – owner to confirm]</span>):
+            Every vintage piece carries honest 10-bar stitch condition notes (<span class="ph">[Grading policy – owner to confirm]</span>) and pit-to-pit measurements (<span class="ph">[Sizing format – owner to confirm]</span>):
           </p>
 
-          <ul class="grade-list">
-            <li><strong>10/10 BNWT:</strong> Deadstock unworn archive piece with original manufacturer swing-tags.</li>
-            <li><strong>9/10 Mint:</strong> Rich weave, crisp collar &amp; cuffs, sharp crest and virtually zero pulls.</li>
-            <li><strong>8/10 Very Good:</strong> Clean matchday-ready classic with minor age-consistent wear noted transparently.</li>
-            <li><strong>7/10 Character:</strong> Honest terrace patina priced fairly for matchday wear.</li>
+          <ul class="grade-list grade-list--meters">
+            <li>
+              <div class="c-grade-band">
+                <div class="c-grade-band__head"><strong>10/10 BNWT</strong><span>Stitch: Unworn weave &amp; tags</span></div>
+                <div class="cat-cond-bars" aria-hidden="true">
+                  <span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span>
+                </div>
+                <p>Deadstock unworn archive piece with original manufacturer swing-tags.</p>
+              </div>
+            </li>
+            <li>
+              <div class="c-grade-band">
+                <div class="c-grade-band__head"><strong>9/10 Mint</strong><span>Stitch: Firm collar &amp; sharp crest</span></div>
+                <div class="cat-cond-bars" aria-hidden="true">
+                  <span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg"></span>
+                </div>
+                <p>Rich weave, crisp collar &amp; cuffs, sharp crest and virtually zero pulls.</p>
+              </div>
+            </li>
+            <li>
+              <div class="c-grade-band">
+                <div class="c-grade-band__head"><strong>8/10 Very Good</strong><span>Stitch: Sound seams, light age</span></div>
+                <div class="cat-cond-bars" aria-hidden="true">
+                  <span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg"></span><span class="cat-seg"></span>
+                </div>
+                <p>Clean matchday-ready classic with minor age-consistent wear noted transparently.</p>
+              </div>
+            </li>
+            <li>
+              <div class="c-grade-band">
+                <div class="c-grade-band__head"><strong>7/10 Character</strong><span>Stitch: Intact seams, patina</span></div>
+                <div class="cat-cond-bars" aria-hidden="true">
+                  <span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg is-on"></span><span class="cat-seg"></span><span class="cat-seg"></span><span class="cat-seg"></span>
+                </div>
+                <p>Honest terrace patina priced fairly for matchday wear.</p>
+              </div>
+            </li>
           </ul>
 
           <a
@@ -439,11 +544,33 @@
 
       <div class="footer-legal">
         <p><strong>Concept Disclaimer:</strong> Concept design by Mark Aszkenasy – not the official website of Ultra Football Shirts. All sample listings, prices, measurements, hours and grading policies in brackets are placeholders awaiting owner confirmation.</p>
-        <p><strong>Illustrative Image Credit:</strong> Photographs (<code>hero.jpg</code>, <code>feature.jpg</code>) are AI-generated illustrative images created for concept demonstration ("Illustrative image"); shirt catalog graphics are original non-branded geometric SVG illustrations.</p>
+        <p><strong>Illustrative Image Credit:</strong> Photographs (<code>hero.jpg</code>, <code>feature.jpg</code>, <code>detail-1.jpg</code>, <code>detail-2.jpg</code>) are AI-generated illustrative images created for concept demonstration ("Illustrative image"); shirt catalog graphics are original non-branded geometric SVG illustrations.</p>
         <p><strong>Design by Mark Aszkenasy</strong></p>
       </div>
     </div>
   </footer>
+
+  <!-- Native Accessible Editorial Photo Lightbox -->
+  <dialog id="c-photo-lightbox" class="c-lightbox" aria-label="Editorial photo preview">
+    <div class="c-lightbox__frame">
+      <div class="c-lightbox__head">
+        <span class="emerald-kicker" style="margin:0;">Illustrative image</span>
+        <button type="button" class="btn-small" data-c-lightbox-close aria-label="Close photo preview">Close &#10005;</button>
+      </div>
+      <div class="c-lightbox__media">
+        <img id="c-lightbox-img" src="../images/hero.jpg" alt="" width="1200" height="896">
+      </div>
+      <div class="c-lightbox__foot">
+        <p id="c-lightbox-caption" class="c-lightbox__caption"></p>
+        <a class="btn btn--emerald c-lightbox__cta" href="#shirt-finder" data-c-lightbox-jump>
+          Open 3-Step Hold / Finder &darr;
+        </a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Non-blocking Micro-Toast -->
+  <div id="c-micro-toast" class="c-micro-toast" role="status" aria-live="polite" hidden></div>
 
   <!-- Mobile Bottom Bar -->
   <nav class="mobile-market-dock" aria-label="Quick actions">

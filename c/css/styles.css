@@ -1341,9 +1341,18 @@ a:hover {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.4rem;
   padding: 0.45rem var(--gutter) calc(0.45rem + env(safe-area-inset-bottom));
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-top: 1px solid var(--border-strong);
-  box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92), 0 -10px 28px rgba(15, 23, 42, 0.12);
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
+}
+
+.mobile-market-dock.is-cleared {
+  transform: translateY(130%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 @media (min-width: 900px) {
@@ -1373,6 +1382,454 @@ a:hover {
   background: var(--emerald);
   color: #FFFFFF;
   border-color: var(--emerald);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+/* ==========================================================================
+   8. COMPACT MOBILE CONCEPT BAR, ABOVE-FOLD HERO, 10-BAR METER, LIGHTBOX & TICKET
+   ========================================================================== */
+@media (max-width: 899px) {
+  .intro-split {
+    gap: 0.95rem;
+  }
+  .gallery-hero-photo {
+    order: -1;
+  }
+  .gallery-hero-photo__frame img {
+    aspect-ratio: 16 / 9.4;
+    min-height: 185px;
+  }
+  .section--intro {
+    padding-top: 0.85rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .concept-banner {
+    padding: 0.18rem 0;
+  }
+  .concept-banner__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.42rem;
+  }
+  .concept-banner__text {
+    font-size: 0.67rem;
+    line-height: 1.22;
+  }
+  .concept-switcher__label {
+    display: none;
+  }
+  .concept-switcher {
+    padding: 0.1rem;
+    gap: 0.18rem;
+  }
+  .concept-switcher__pill {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0;
+    font-size: 0.72rem;
+  }
+}
+
+/* Sticky Header Scroll-Progress Hairline */
+.c-scroll-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background: var(--emerald);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  pointer-events: none;
+  z-index: 15;
+  transition: transform 0.08s linear;
+}
+
+/* 1-Tap Collector Presets */
+.c-preset-bar {
+  margin-bottom: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+}
+
+.c-preset-bar--stepper {
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.c-preset-bar__label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--emerald);
+  letter-spacing: 0.04em;
+}
+
+.c-preset-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+}
+
+.c-preset-chip {
+  min-height: 40px;
+  padding: 0.35rem 0.72rem;
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid rgba(13, 122, 78, 0.38);
+  font-family: var(--font-mono);
+  font-size: 0.71rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.c-preset-chip:hover,
+.c-preset-chip.is-active {
+  background: var(--emerald);
+  color: #FFFFFF;
+  border-color: var(--emerald);
+}
+
+/* 10-Bar Stitch-by-Stitch Condition Meter (Catalog + Grading Guide) */
+.cat-cond-meter {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 0.35rem 0.42rem;
+  min-width: 0;
+}
+
+.cat-cond-meter__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.22rem;
+}
+
+.cat-cond-bars {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+}
+
+.cat-seg {
+  height: 5px;
+  border-radius: 2px;
+  background: #DCE3EE;
+}
+
+.cat-seg.is-on {
+  background: var(--emerald);
+}
+
+.cat-cond-meter__stitch {
+  margin-top: 0.22rem;
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  color: var(--ink-soft);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.grade-list--meters {
+  list-style: none;
+  padding-left: 0;
+  gap: 0.65rem;
+}
+
+.c-grade-band {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.7rem 0.85rem;
+}
+
+.c-grade-band__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.84rem;
+}
+
+.c-grade-band__head span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--emerald);
+}
+
+.c-grade-band p {
+  margin: 0.38rem 0 0;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+/* 3-Photo Stitch & Boutique Triptych */
+.c-photo-triptych {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.c-photo-subpair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+@media (max-width: 480px) {
+  .c-photo-subpair {
+    grid-template-columns: 1fr;
+  }
+}
+
+.auth-subphoto {
+  margin: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.auth-subphoto__frame {
+  position: relative;
+}
+
+.auth-subphoto__frame img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.auth-subphoto__cap {
+  padding: 0.45rem 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+}
+
+.is-c-lightbox {
+  cursor: zoom-in;
+}
+
+.c-zoom-badge {
+  position: absolute;
+  bottom: 0.55rem;
+  right: 0.55rem;
+  background: rgba(15, 23, 42, 0.88);
+  color: #FFFFFF;
+  padding: 0.18rem 0.52rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  pointer-events: none;
+}
+
+/* Native <dialog> Lightbox */
+.c-lightbox {
+  padding: 0;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 20px;
+  background: var(--card);
+  color: var(--ink);
+  width: min(94vw, 820px);
+  max-height: 92vh;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.35);
+}
+
+.c-lightbox::backdrop {
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.c-lightbox__frame {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.c-lightbox__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 1rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.c-lightbox__media {
+  background: #0F172A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.c-lightbox__media img {
+  width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+}
+
+.c-lightbox__foot {
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.c-lightbox__caption {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+
+.c-lightbox__cta {
+  min-height: 42px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8rem;
+}
+
+/* Non-Blocking Micro-Toast */
+.c-micro-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(5.1rem + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  z-index: 1600;
+  max-width: min(92vw, 460px);
+  padding: 0.56rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.96);
+  color: #FFFFFF;
+  border: 1.5px solid var(--emerald);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.25);
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+@media (min-width: 900px) {
+  .c-micro-toast {
+    bottom: 1.4rem;
+  }
+}
+
+.c-micro-toast[hidden] {
+  display: none !important;
+}
+
+/* Owner Receipt Summary Ticket */
+.c-owner-receipt {
+  margin-top: 0.7rem;
+  background: #FFFFFF;
+  border: 1.5px dashed var(--emerald);
+  border-radius: 12px;
+  padding: 0.85rem 0.95rem;
+}
+
+.c-owner-receipt__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  padding-bottom: 0.45rem;
+  margin-bottom: 0.55rem;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--emerald);
+  text-transform: uppercase;
+}
+
+.c-owner-receipt__dl {
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.83rem;
+}
+
+.c-owner-receipt__row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 0.45rem;
+}
+
+@media (max-width: 420px) {
+  .c-owner-receipt__row {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+}
+
+.c-owner-receipt__row dt {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+
+.c-owner-receipt__row dd {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.c-owner-receipt__actions {
+  margin-top: 0.75rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.c-receipt-btn {
+  min-height: 40px;
+  padding: 0.36rem 0.85rem;
+  border-radius: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  border: 1.5px solid var(--emerald);
+  background: var(--emerald);
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.c-receipt-btn--outline {
+  background: #FFFFFF;
+  color: var(--ink);
+  border-color: var(--border-strong);
 }
 
 @media (prefers-reduced-motion: reduce) {
