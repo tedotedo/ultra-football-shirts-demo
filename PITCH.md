@@ -70,3 +70,23 @@ Every unknown or unverified detail in this demo is transparently flagged in `[..
 - [ ] **`[Buy/trade process – owner to confirm]`** — How the owner prefers locals to bring in or message photos of classic shirt collections to sell or trade.
 - [ ] **Real Shop Photography** — Replace `images/hero.jpg` and `images/feature.jpg` (AI-generated illustrative placeholders) with real photos of the 2 Danby Wynd shopfront, wynd entrance off Yarm High Street, and shirt rails.
 - [ ] **Domain DNS Repoint (`ultrafootballshirts.co.uk`)** — Remove stale Shopify/Cloudflare `A`/`CNAME` records causing Error 1001 and point to live hosting with fresh HTTPS.
+
+---
+
+## Set D — The Sticker Album (`/d/`)
+
+- **Live Concept URL:** https://tedotedo.github.io/ultra-football-shirts-demo/d/
+- **What it is:** Every 1-of-1 shirt is a sticker in an album. Collectors mark Got or Need, and the Need list becomes a Click & Collect reservation.
+- **Reach it from any page:** tap **D** in the Concept switcher in the top banner.
+
+### 3-Tap Phone Demo (Set D)
+1. Tap the **1990s** page chip, then **Need** on two stickers: the counter on the cover updates.
+2. Scroll to **Next drop opens in** to show the live countdown.
+3. Tap **Needs list** in the bottom bar: both shirts are waiting there, ready to reserve.
+
+### One-Line Pitch
+> *"Got, got, need. Every collector knows the feeling, and it gives them a reason to check back every week."*
+
+### Know Before You Show
+- All twelve shirts are drawn sample graphics, not stock, with no real clubs or crests. The Friday 6pm drop time is an assumption.
+- Demo only: no form sends anything, and unknown details stay as bracketed `[...]` placeholders for the owner to confirm.

@@ -53,3 +53,9 @@ python3 -m http.server 8080 --directory "/Users/odet/Downloads/Yarm websites/ult
 ```
 
 Then visit `http://localhost:8080/index.html`.
+
+## Set D — The Sticker Album
+
+- `d/index.html`, `d/css/styles.css`, `d/js/app.js` — Every 1-of-1 shirt is a sticker in an album. Collectors mark Got or Need, and the Need list becomes a Click & Collect reservation.
+- Live at https://tedotedo.github.io/ultra-football-shirts-demo/d/. Reuses the root `fonts/` and `images/`; same `noindex`, zero external requests and `.ph` placeholder rules as Sets A–C.
+- All twelve shirts are drawn sample graphics, not stock, with no real clubs or crests. The Friday 6pm drop time is an assumption.
