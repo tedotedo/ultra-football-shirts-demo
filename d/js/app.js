@@ -45,7 +45,22 @@
   var era = 'all';
   function label(s) { return 'Sample ' + (s.no < 10 ? '0' : '') + s.no; }
 
+  var fresh = null, wasComplete = {};
+  var completeEl = document.querySelector('[data-complete]');
+  function renderComplete() {
+    var shown = SHIRTS.filter(function (s) { return era === 'all' || s.era === era; });
+    var gotAll = shown.length > 0 && shown.every(function (s) { return state[s.no] === 'got'; });
+    var name = era === 'all' ? 'Album' : ERA[era] + ' page';
+    completeEl.hidden = !gotAll;
+    if (gotAll) {
+      completeEl.querySelector('b').textContent = name + ' complete!';
+      if (!wasComplete[era] && fresh) { completeEl.classList.remove('is-new'); void completeEl.offsetWidth; completeEl.classList.add('is-new'); }
+    }
+    wasComplete[era] = gotAll;
+  }
+
   function renderPage() {
+    renderComplete();
     pageEl.textContent = '';
     var items = SHIRTS.concat(EMPTY).sort(function (a, b) { return a.no - b.no; });
     items.forEach(function (s) {
@@ -60,6 +75,7 @@
       }
       var st = state[s.no] || '';
       li.setAttribute('data-state', st);
+      if (fresh && fresh.no === s.no) li.className += fresh.act === 'got' ? ' is-slapped' : ' is-wanted';
       li.innerHTML =
         '<article class="sticker" style="--tilt:' + (s.no % 2 ? -1.2 : 1.1) + 'deg">' +
           '<div class="sticker__art' + (s.foil ? ' foil' : '') + '" style="--bg:' + s.bg + '">' + shirtSVG(s) +
@@ -74,7 +90,8 @@
         var act = e.target.getAttribute('data-act');
         if (!act) return;
         state[s.no] = state[s.no] === act ? '' : act;
-        save(); renderPage(); renderNeeds();
+        fresh = state[s.no] ? { no: s.no, act: act } : null;
+        save(); renderPage(); renderNeeds(); fresh = null;
       });
       pageEl.appendChild(li);
     });
