@@ -27,7 +27,6 @@ This static, zero-dependency concept demo shows how the owner can repoint the do
 | `favicon.svg` & `images/logo-mark.svg` | Custom non-branded geometric shirt & pitch-corner SVG emblems. |
 | `fonts/` | Self-hosted `woff2` fonts (`Space Grotesk`, `IBM Plex Sans`, `IBM Plex Mono`) — zero external font or CDN requests. |
 | `images/hero.jpg` & `images/feature.jpg` | AI-generated illustrative editorial images (`1440x803` and `1200x896`), explicitly captioned `Illustrative image`. |
-| `PITCH.md` | Walk-in script, 3-tap counter walkthrough, objection handlers, and `[...]` owner confirmation checklist. |
 
 ---
 
